@@ -16,6 +16,11 @@
 		94EDC88028417BB8005D8375 /* SeriesCatalogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EDC87F28417BB8005D8375 /* SeriesCatalogTests.swift */; };
 		94EDC88A28417BB8005D8375 /* SeriesCatalogUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EDC88928417BB8005D8375 /* SeriesCatalogUITests.swift */; };
 		94EDC88C28417BB8005D8375 /* SeriesCatalogUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EDC88B28417BB8005D8375 /* SeriesCatalogUITestsLaunchTests.swift */; };
+		94EDC8A128417D1A005D8375 /* UITableView+Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EDC89A28417D1A005D8375 /* UITableView+Register.swift */; };
+		94EDC8A228417D1A005D8375 /* NetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EDC89C28417D1A005D8375 /* NetworkProvider.swift */; };
+		94EDC8A328417D1A005D8375 /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EDC89D28417D1A005D8375 /* ServiceError.swift */; };
+		94EDC8A428417D1A005D8375 /* URLRequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EDC89E28417D1A005D8375 /* URLRequestProtocol.swift */; };
+		94EDC8A528417D1A005D8375 /* NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EDC89F28417D1A005D8375 /* NetworkLogger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +54,11 @@
 		94EDC88528417BB8005D8375 /* SeriesCatalogUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SeriesCatalogUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		94EDC88928417BB8005D8375 /* SeriesCatalogUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesCatalogUITests.swift; sourceTree = "<group>"; };
 		94EDC88B28417BB8005D8375 /* SeriesCatalogUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesCatalogUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		94EDC89A28417D1A005D8375 /* UITableView+Register.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Register.swift"; sourceTree = "<group>"; };
+		94EDC89C28417D1A005D8375 /* NetworkProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkProvider.swift; sourceTree = "<group>"; };
+		94EDC89D28417D1A005D8375 /* ServiceError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
+		94EDC89E28417D1A005D8375 /* URLRequestProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLRequestProtocol.swift; sourceTree = "<group>"; };
+		94EDC89F28417D1A005D8375 /* NetworkLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkLogger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +109,8 @@
 		94EDC86728417BB7005D8375 /* SeriesCatalog */ = {
 			isa = PBXGroup;
 			children = (
+				94EDC89828417D1A005D8375 /* Common */,
+				94EDC8A028417D1A005D8375 /* Features */,
 				94EDC86828417BB7005D8375 /* AppDelegate.swift */,
 				94EDC86A28417BB7005D8375 /* SceneDelegate.swift */,
 				94EDC86C28417BB7005D8375 /* ViewController.swift */,
@@ -125,6 +137,41 @@
 				94EDC88B28417BB8005D8375 /* SeriesCatalogUITestsLaunchTests.swift */,
 			);
 			path = SeriesCatalogUITests;
+			sourceTree = "<group>";
+		};
+		94EDC89828417D1A005D8375 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				94EDC89928417D1A005D8375 /* Extension */,
+				94EDC89B28417D1A005D8375 /* Network */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		94EDC89928417D1A005D8375 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				94EDC89A28417D1A005D8375 /* UITableView+Register.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		94EDC89B28417D1A005D8375 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				94EDC89C28417D1A005D8375 /* NetworkProvider.swift */,
+				94EDC89D28417D1A005D8375 /* ServiceError.swift */,
+				94EDC89E28417D1A005D8375 /* URLRequestProtocol.swift */,
+				94EDC89F28417D1A005D8375 /* NetworkLogger.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		94EDC8A028417D1A005D8375 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Features;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,9 +305,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94EDC8A528417D1A005D8375 /* NetworkLogger.swift in Sources */,
+				94EDC8A328417D1A005D8375 /* ServiceError.swift in Sources */,
 				94EDC86D28417BB7005D8375 /* ViewController.swift in Sources */,
 				94EDC86928417BB7005D8375 /* AppDelegate.swift in Sources */,
+				94EDC8A128417D1A005D8375 /* UITableView+Register.swift in Sources */,
+				94EDC8A428417D1A005D8375 /* URLRequestProtocol.swift in Sources */,
 				94EDC86B28417BB7005D8375 /* SceneDelegate.swift in Sources */,
+				94EDC8A228417D1A005D8375 /* NetworkProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
