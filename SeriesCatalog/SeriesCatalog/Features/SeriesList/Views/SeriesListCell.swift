@@ -16,9 +16,9 @@ struct SeriesListCellModel: Hashable {
   let placeholderImage: UIImage? = UIImage.image(name: .loading)
   
   init(series: Series) {
-    logoURL = series.image.medium
-    title = series.name
-    genres = series.genres.joined(separator: ", ")
+    logoURL = series.image?.medium
+    title = series.name ?? "No Title"
+    genres = series.genres?.joined(separator: ", ") ?? "No genre"
   }
 }
 

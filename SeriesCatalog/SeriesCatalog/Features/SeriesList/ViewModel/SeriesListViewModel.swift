@@ -21,7 +21,7 @@ protocol SeriesListViewModelProtocol {
 }
 
 class SeriesListViewModel: SeriesListViewModelProtocol {
-  @Published var state: SeriesListState = .loading
+  @Published var state: SeriesListState = .none
   var statePublisher: Published<SeriesListState>.Publisher { $state }
   let listAPI: SeriesListAPIProtocol
   var page: Int = 0

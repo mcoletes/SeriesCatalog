@@ -9,14 +9,19 @@ import Foundation
 
 // MARK: - WelcomeElement
 struct Series: Codable {
-  let name: String
-  let image: SeriesImage
-  let summary: String
-  let genres: [String]
+  let name: String?
+  let image: SeriesImage?
+  let summary: String?
+  let genres: [String]?
 }
 
 // MARK: - SeriesImage
 struct SeriesImage: Codable {
   let medium: URL?
   let original: URL?
+}
+
+// MARK: - Search Result
+struct SearchResult: Codable {
+  let show: Series
 }
