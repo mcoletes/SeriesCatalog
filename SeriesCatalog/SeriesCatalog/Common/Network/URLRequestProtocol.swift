@@ -17,7 +17,7 @@ enum HTTPMethod: String {
 
 // MARK: - Protocol
 protocol URLRequestProtocol {
-  var baseUrl: String { get }
+  var baseURL: String { get }
   var path: String { get }
   var httpMethod: HTTPMethod { get }
   var headers: [String: String] { get }
