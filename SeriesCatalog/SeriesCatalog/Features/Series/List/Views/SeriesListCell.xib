@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,29 +21,40 @@
                         <rect key="frame" x="8" y="39" width="304" height="90"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="YuX-pr-ewE">
-                                <rect key="frame" x="105" y="36.5" width="183" height="37.5"/>
+                                <rect key="frame" x="105" y="36.5" width="160" height="37.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oEe-GB-eDM">
-                                        <rect key="frame" x="0.0" y="0.0" width="183" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="160" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genres" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BpU-nC-DIW">
-                                        <rect key="frame" x="0.0" y="20.5" width="183" height="17"/>
+                                        <rect key="frame" x="0.0" y="20.5" width="160" height="17"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                             </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ayY-cw-0al">
+                                <rect key="frame" x="273" y="39.5" width="15" height="11.5"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="5uE-kU-VP8"/>
+                                    <constraint firstAttribute="width" constant="15" id="zpz-fc-rKg"/>
+                                </constraints>
+                                <imageReference key="image" image="chevron.right" catalog="system" renderingMode="template"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="YuX-pr-ewE" secondAttribute="trailing" constant="16" id="7Mp-f7-JSk"/>
                             <constraint firstAttribute="height" constant="90" id="8zT-IV-rHf"/>
                             <constraint firstAttribute="bottom" secondItem="YuX-pr-ewE" secondAttribute="bottom" constant="16" id="DXa-Cl-ZbB"/>
+                            <constraint firstAttribute="trailing" secondItem="ayY-cw-0al" secondAttribute="trailing" constant="16" id="PRp-Mc-Pvb"/>
                             <constraint firstItem="YuX-pr-ewE" firstAttribute="top" relation="greaterThanOrEqual" secondItem="q3y-hV-1PY" secondAttribute="top" constant="16" id="Vq1-ia-vOM"/>
+                            <constraint firstItem="ayY-cw-0al" firstAttribute="leading" secondItem="YuX-pr-ewE" secondAttribute="trailing" constant="8" id="cjs-eG-fhg"/>
+                            <constraint firstItem="ayY-cw-0al" firstAttribute="centerY" secondItem="q3y-hV-1PY" secondAttribute="centerY" id="gXa-sN-UgY"/>
                         </constraints>
                     </view>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tEH-m5-FuQ">
@@ -73,4 +85,7 @@
             <point key="canvasLocation" x="137.68115942028987" y="100.11160714285714"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="chevron.right" catalog="system" width="96" height="128"/>
+    </resources>
 </document>
