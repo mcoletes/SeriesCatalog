@@ -8,14 +8,14 @@
 import Foundation
 import Combine
 
-protocol SeriesListAPIProtocol {
+protocol SeriesAPIProtocol {
   func fetchSeries(page: Int) async throws -> [Series]
   func searchSeries(query: String) async throws -> [SearchResult]
   func fetchSeriesDetail(id: Int) async throws -> SeriesDetail
 
 }
 
-class SeriesListAPI: SeriesListAPIProtocol {
+class SeriesAPI: SeriesAPIProtocol {
   
   private var networkProvider: NetworkProviderProtocol
   
@@ -35,36 +35,3 @@ class SeriesListAPI: SeriesListAPIProtocol {
     return try await networkProvider.fetch(provider: SeriesDetailProvider(id: id))
   }
 }
-
-struct SeriesListProvider: URLRequestProtocol {
-  var path: String = "shows"
-  var httpMethod: HTTPMethod = .get
-  var urlParameters: [URLQueryItem]
-  
-  init(page: Int) {
-    urlParameters = [URLQueryItem(name: "page", value: "\(page)")]
-  }
-}
-
-struct SeriesSearchProvider: URLRequestProtocol {
-  var path: String = "search/shows"
-  var httpMethod: HTTPMethod = .get
-  var urlParameters: [URLQueryItem]
-  
-  init(query: String) {
-    urlParameters = [URLQueryItem(name: "q", value: query)]
-  }
-}
-
-
-struct SeriesDetailProvider: URLRequestProtocol {
-  var path: String = "search/shows"
-  var httpMethod: HTTPMethod = .get
-  var urlParameters: [URLQueryItem] = [URLQueryItem(name: "embed", value: "episodes")]
-  
-  init(id: Int) {
-    path = "shows/\(id)"
-  }
-}
-
-

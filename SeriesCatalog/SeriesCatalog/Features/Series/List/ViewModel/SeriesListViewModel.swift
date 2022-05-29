@@ -24,12 +24,12 @@ protocol SeriesListViewModelProtocol {
 class SeriesListViewModel: SeriesListViewModelProtocol {
   @Published var state: SeriesListState = .none
   var statePublisher: Published<SeriesListState>.Publisher { $state }
-  private let listAPI: SeriesListAPIProtocol
+  private let listAPI: SeriesAPI
   private var page: Int = 0
   private var fetching: Bool = false
   private var series: [Series] = []
   
-  init(listAPI: SeriesListAPIProtocol = SeriesListAPI()) {
+  init(listAPI: SeriesAPI = SeriesAPI()) {
     self.listAPI = listAPI
   }
   

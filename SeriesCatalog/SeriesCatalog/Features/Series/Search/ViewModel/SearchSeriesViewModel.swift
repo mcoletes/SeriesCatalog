@@ -26,11 +26,11 @@ class SearchSeriesViewModel: SearchSeriesViewModelProtocol {
   @Published var state: SeriesSearchState = .none
   var statePublisher: Published<SeriesSearchState>.Publisher { $state }
   
-  let listAPI: SeriesListAPIProtocol
+  let listAPI: SeriesAPI
   private var fetching = false
   var series: [Series] = []
   
-  init(listAPI: SeriesListAPIProtocol = SeriesListAPI()) {
+  init(listAPI: SeriesAPI = SeriesAPI()) {
     self.listAPI = listAPI
   }
   
