@@ -18,15 +18,17 @@ protocol SeriesListViewModelProtocol {
   var statePublisher: Published<SeriesListState>.Publisher { get }
   func load()
   func prefetching(row: Int)
+  func getId(for row: Int) -> Int?
 }
 
 class SeriesListViewModel: SeriesListViewModelProtocol {
   @Published var state: SeriesListState = .none
   var statePublisher: Published<SeriesListState>.Publisher { $state }
-  let listAPI: SeriesListAPIProtocol
-  var page: Int = 0
-  var fetching: Bool = false
-  let defaultPageSize = 250
+  private let listAPI: SeriesListAPIProtocol
+  private var page: Int = 0
+  private var fetching: Bool = false
+  private var series: [Series] = []
+  
   init(listAPI: SeriesListAPIProtocol = SeriesListAPI()) {
     self.listAPI = listAPI
   }
@@ -40,6 +42,7 @@ class SeriesListViewModel: SeriesListViewModelProtocol {
     Task {
       do {
         guard let series = try? await listAPI.fetchSeries(page: page) else { return }
+        self.series.append(contentsOf: series)
         let models = series.map({SeriesListCellModel(series: $0)})
         state = .loaded(models)
         page += 1
@@ -51,8 +54,13 @@ class SeriesListViewModel: SeriesListViewModelProtocol {
   }
   
   func prefetching(row: Int) {
-    guard abs(row - defaultPageSize * page) < 50, !fetching else { return }
+    guard abs(series.count - row) < 50, !fetching else { return }
     fetching = true
     load()
+  }
+  
+  func getId(for row: Int) -> Int? {
+    guard row < series.count else { return nil }
+    return series[row].id
   }
 }

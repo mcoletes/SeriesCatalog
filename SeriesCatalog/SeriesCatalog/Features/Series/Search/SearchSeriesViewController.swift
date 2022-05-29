@@ -8,10 +8,7 @@
 import UIKit
 import Combine
 
-class SearchSeriesViewController: UIViewController {
-  
-  @IBOutlet weak var tableView: UITableView!
-  @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+class SearchSeriesViewController: UITableViewController, LoadableProtocol {
   
   let viewModel: SearchSeriesViewModelProtocol
   var cancellables: Set<AnyCancellable> = []
@@ -28,6 +25,7 @@ class SearchSeriesViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    title = "Search"
     setup()
   }
   
@@ -39,6 +37,7 @@ class SearchSeriesViewController: UIViewController {
   
   private func registerCells() {
     tableView.separatorColor = .clear
+    tableView.delegate = self
     tableView.register(SeriesListCell.self)
   }
   
@@ -55,9 +54,9 @@ class SearchSeriesViewController: UIViewController {
     
     switch state {
     case .loading:
-      activityIndicator.startAnimating()
+      showLoading()
     case .loaded(let models):
-      activityIndicator.stopAnimating()
+      hideLoading()
       var snapshot = Snapshot()
       snapshot.appendSections([0])
       snapshot.appendItems(models, toSection: 0)
@@ -81,6 +80,12 @@ class SearchSeriesViewController: UIViewController {
       cell.setup(with: model)
       return cell
     }
+  }
+  
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    guard let id = viewModel.getId(for: indexPath.row) else { return }
+    let detailVM = SeriesDetailViewModel(id: id)
+    navigationController?.pushViewController(SeriesDetailViewController(viewModel: detailVM), animated: true)
   }
 }
 
