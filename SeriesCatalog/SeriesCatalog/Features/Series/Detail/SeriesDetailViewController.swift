@@ -148,4 +148,11 @@ class SeriesDetailViewController: UITableViewController, LoadableProtocol {
   private func shouldAddHeader() -> Bool {
     return segmentedControl.selectedSegmentIndex != 0
   }
+  
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    guard segmentedControl.selectedSegmentIndex == 1,
+          let episode = viewModel.getEpisode(with: indexPath.row, section: indexPath.section) else { return }
+    let episodeDetailVM = EpisodesDetailViewModel(episode: episode)
+    navigationController?.pushViewController(EpisodesDetailViewController(viewModel: episodeDetailVM), animated: true)
+  }
 }
