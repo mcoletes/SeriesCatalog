@@ -11,7 +11,7 @@ enum SeriesListState {
   case none
   case loading
   case loaded([SeriesListCellModel])
-  case error
+  case error(ServiceError, Action)
 }
 
 protocol SeriesListViewModelProtocol {
@@ -41,14 +41,15 @@ class SeriesListViewModel: SeriesListViewModelProtocol {
   private func fetch() {
     Task {
       do {
-        guard let series = try? await listAPI.fetchSeries(page: page) else { return }
+        let series = try await listAPI.fetchSeries(page: page)
         self.series.append(contentsOf: series)
         let models = series.map({SeriesListCellModel(series: $0)})
         state = .loaded(models)
         page += 1
         fetching = false
       } catch let error as ServiceError {
-
+        state = .error(error, fetch)
+        fetching = false
       }
     }
   }

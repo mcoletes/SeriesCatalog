@@ -11,7 +11,7 @@ import Combine
 typealias TableDataSource = UITableViewDiffableDataSource<Int, SeriesListCellModel>
 typealias Snapshot = NSDiffableDataSourceSnapshot<Int, SeriesListCellModel>
 
-class SeriesTableViewController: UITableViewController, UITableViewDataSourcePrefetching {
+class SeriesTableViewController: UITableViewController, UITableViewDataSourcePrefetching, ErrorProtocol {
 
   // MARK: - Properties
 
@@ -97,6 +97,8 @@ class SeriesTableViewController: UITableViewController, UITableViewDataSourcePre
       }
       snapshot.appendItems(models, toSection: 0)
       datasource.apply(snapshot)
+    case .error(let error, let action):
+      showError(serviceError: error, action: action)
     default:
       break
     }

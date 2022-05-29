@@ -28,4 +28,7 @@ enum ServiceError: Error, Equatable {
       return "Invalid Response"
     }
   }
+  var title: String {
+    return "Ops!"
+  }
 }

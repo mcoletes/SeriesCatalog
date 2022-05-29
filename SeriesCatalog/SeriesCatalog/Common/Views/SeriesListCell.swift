@@ -13,7 +13,6 @@ struct SeriesListCellModel: Hashable {
   let logoURL: URL?
   let title: String
   let genres: String
-  let placeholderImage: UIImage? = UIImage.image(name: .loading)
   
   init(series: Series) {
     logoURL = series.image?.medium
@@ -36,7 +35,8 @@ class SeriesListCell: UITableViewCell, NibLoadableView, ReusableView {
   }
   
   func setup(with model: SeriesListCellModel) {
-    logoView.sd_setImage(with: model.logoURL, placeholderImage: model.placeholderImage)
+    logoView.sd_imageIndicator = SDWebImageActivityIndicator.gray
+    logoView.sd_setImage(with: model.logoURL)
     titleLabel.text = model.title
     genreLabel.text = model.genres
   }

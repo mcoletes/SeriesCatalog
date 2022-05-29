@@ -33,10 +33,9 @@ class SeriesDetailViewModel: SeriesDetailViewModelProtocol {
         let seriesDetail = try await listAPI.fetchSeriesDetail(id: id)
         self.episodes = seriesDetail.embedded?.episodes ?? []
         let model = SeriesDetailModels.Model(seriesDetail: seriesDetail)
-        print(model)
         state = .loaded(model)
       } catch let error as ServiceError {
-        print(error)
+        state = .error(error, load)
       }
     }
   }
@@ -46,4 +45,3 @@ class SeriesDetailViewModel: SeriesDetailViewModelProtocol {
     return episode
   }
 }
-

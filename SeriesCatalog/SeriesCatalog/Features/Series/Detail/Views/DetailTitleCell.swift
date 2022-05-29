@@ -23,7 +23,9 @@ class DetailTitleCell: UITableViewCell, ReusableView, NibLoadableView {
   
   func setup(title: String?, imageURL: URL?) {
     titleLabel.text = title
-    logoImage.sd_setImage(with: imageURL, placeholderImage: UIImage.image(name: .loading))
-    backgroundImage.sd_setImage(with: imageURL, placeholderImage: UIImage.image(name: .loading))
+    logoImage.sd_imageIndicator = SDWebImageActivityIndicator.gray
+    backgroundImage.sd_imageIndicator = SDWebImageActivityIndicator.gray
+    logoImage.sd_setImage(with: imageURL)
+    backgroundImage.sd_setImage(with: imageURL)
   }
 }

@@ -37,7 +37,6 @@ struct SeriesDetailModels {
     static func == (lhs: SeriesDetailModels.Section, rhs: SeriesDetailModels.Section) -> Bool {
       lhs.id == rhs.id
     }
-   
   }
   
   struct Model {
@@ -64,5 +63,5 @@ enum SeriesDetailState {
   case none
   case loading
   case loaded(SeriesDetailModels.Model)
-  case error
+  case error(ServiceError, Action)
 }
