@@ -35,7 +35,6 @@ class SeriesTableViewController: UITableViewController, UITableViewDataSourcePre
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    title = "Series List"
     navigationItem.backButtonDisplayMode = .minimal
     setup()
     viewModel.load()

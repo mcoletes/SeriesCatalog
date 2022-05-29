@@ -16,6 +16,7 @@ class AppearanceManager: AppearanceManagerProtocol {
   
   func setupCommonAppearenceLayouts() {
     setupNavigationBarAppearance()
+    setupTabBarAppearance()
     setupTableViewAppearance()
   }
   
@@ -32,13 +33,23 @@ class AppearanceManager: AppearanceManagerProtocol {
     UINavigationBar.appearance().scrollEdgeAppearance = appearance
   }
   
-//  private func setupBarButtonAppearence() {
-//    let buttonAppearance = UIBarButtonItemAppearance()
-//    buttonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.label]
-//  
-//    UINavigationItem.appearence.standardAppearance?.buttonAppearance = buttonAppearance
-//    navigationItem.compactAppearance?.buttonAppearance = buttonAppearance
-//  }
+  private func setupTabBarAppearance() {
+    let appearance = UITabBarAppearance()
+    appearance.configureWithOpaqueBackground()
+    appearance.backgroundColor = UIColor.secondarySystemBackground
+    let normal: [NSAttributedString.Key : Any] = [.foregroundColor: UIColor.secondaryLabel]
+    let selected: [NSAttributedString.Key : Any] = [.foregroundColor: UIColor.label]
+
+    appearance.stackedLayoutAppearance.normal.titleTextAttributes = normal
+    appearance.stackedLayoutAppearance.selected.titleTextAttributes = selected
+    appearance.compactInlineLayoutAppearance.normal.titleTextAttributes = normal
+    appearance.compactInlineLayoutAppearance.selected.titleTextAttributes = selected
+    appearance.inlineLayoutAppearance.normal.titleTextAttributes = normal
+    appearance.inlineLayoutAppearance.selected.titleTextAttributes = selected
+    
+    UITabBar.appearance().standardAppearance = appearance
+    UITabBar.appearance().scrollEdgeAppearance = appearance
+  }
   
   private func setupTableViewAppearance() {
     UITableView.appearance().sectionHeaderTopPadding = 0
