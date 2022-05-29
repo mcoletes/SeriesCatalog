@@ -11,13 +11,16 @@ import Combine
 typealias TableDataSource = UITableViewDiffableDataSource<Int, SeriesListCellModel>
 typealias Snapshot = NSDiffableDataSourceSnapshot<Int, SeriesListCellModel>
 
-
 class SeriesTableViewController: UITableViewController, UITableViewDataSourcePrefetching {
 
+  // MARK: - Properties
+
   private let viewModel: SeriesListViewModelProtocol
-  var cancellables: Set<AnyCancellable> = []
-  lazy var datasource: TableDataSource = makeDataSource()
+  private var cancellables: Set<AnyCancellable> = []
+  private lazy var datasource: TableDataSource = makeDataSource()
   
+  // MARK: - Initializers
+
   init(viewModel: SeriesListViewModelProtocol = SeriesListViewModel()) {
     self.viewModel = viewModel
     super.init(style: .plain)
@@ -28,6 +31,8 @@ class SeriesTableViewController: UITableViewController, UITableViewDataSourcePre
     super.init(coder: coder)
   }
   
+  // MARK: - View Life Cycle
+
   override func viewDidLoad() {
     super.viewDidLoad()
     title = "Series List"
@@ -40,7 +45,7 @@ class SeriesTableViewController: UITableViewController, UITableViewDataSourcePre
   
   private func setup() {
     barButton()
-    registerCells()
+    setupTableView()
     bind()
   }
   
@@ -49,16 +54,30 @@ class SeriesTableViewController: UITableViewController, UITableViewDataSourcePre
     navigationItem.rightBarButtonItem = button
   }
   
-  private func registerCells() {
-    tableView.separatorColor = .clear
+  private func setupTableView() {
     tableView.prefetchDataSource = self
+    tableView.separatorColor = .clear
+    registerCells()
+    setupTableFooterView()
+  }
+  
+  private func registerCells() {
     tableView.register(SeriesListCell.self)
+  }
+  
+  private func setupTableFooterView() {
+    let activityIndicator = UIActivityIndicatorView(style: .large)
+    activityIndicator.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: 50)
+    activityIndicator.startAnimating()
+    tableView.tableFooterView = activityIndicator
   }
   
   @objc private func searchTapped() {
     navigationController?.pushViewController(SearchSeriesViewController(), animated: true)
   }
   
+  // MARK: - Bind
+
   func bind() {
     viewModel.statePublisher
       .receive(on: RunLoop.main)

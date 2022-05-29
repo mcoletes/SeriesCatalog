@@ -27,7 +27,7 @@ class AppearanceManager: AppearanceManagerProtocol {
     
     let backButton = UIImage(systemName: "arrow.left")
     appearance.setBackIndicatorImage(backButton, transitionMaskImage: backButton)
-
+    UINavigationBar.appearance().tintColor = .label
     UINavigationBar.appearance().standardAppearance = appearance
     UINavigationBar.appearance().scrollEdgeAppearance = appearance
   }

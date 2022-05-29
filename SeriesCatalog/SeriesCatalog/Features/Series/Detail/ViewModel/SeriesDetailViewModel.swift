@@ -11,12 +11,13 @@ import Foundation
 protocol SeriesDetailViewModelProtocol {
   var statePublisher: Published<SeriesDetailState>.Publisher { get }
   func load()
+  func getEpisode(with row: Int, section: Int) -> Episode?
 }
 
 class SeriesDetailViewModel: SeriesDetailViewModelProtocol {
   @Published var state: SeriesDetailState = .none
   var statePublisher: Published<SeriesDetailState>.Publisher { $state }
-  
+  private var episodes: [Episode] = []
   let id: Int
   let listAPI: SeriesListAPIProtocol
   
@@ -30,6 +31,7 @@ class SeriesDetailViewModel: SeriesDetailViewModelProtocol {
     Task {
       do {
         let seriesDetail = try await listAPI.fetchSeriesDetail(id: id)
+        self.episodes = seriesDetail.embedded?.episodes ?? []
         let model = SeriesDetailModels.Model(seriesDetail: seriesDetail)
         print(model)
         state = .loaded(model)
@@ -37,6 +39,11 @@ class SeriesDetailViewModel: SeriesDetailViewModelProtocol {
         print(error)
       }
     }
+  }
+  
+  func getEpisode(with row: Int, section: Int) -> Episode? {
+    guard let episode = episodes.first(where: { $0.season == (section + 1) && $0.number == (row + 1)}) else { return nil }
+    return episode
   }
 }
 
