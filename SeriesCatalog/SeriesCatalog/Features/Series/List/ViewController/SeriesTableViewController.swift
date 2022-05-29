@@ -30,7 +30,8 @@ class SeriesTableViewController: UITableViewController, UITableViewDataSourcePre
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.title = "Series List"
+    title = "Series List"
+    navigationItem.backButtonDisplayMode = .minimal
     setup()
     viewModel.load()
   }
@@ -92,8 +93,18 @@ class SeriesTableViewController: UITableViewController, UITableViewDataSourcePre
     }
   }
   
+  // MARK: - Table view prefetch
+  
   func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
     guard let maxRow = indexPaths.max()?.row else { return }
     viewModel.prefetching(row: maxRow)
+  }
+  
+  // MARK: - Table view delegate
+  
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    guard let id = viewModel.getId(for: indexPath.row) else { return }
+    let detailVM = SeriesDetailViewModel(id: id)
+    navigationController?.pushViewController(SeriesDetailViewController(viewModel: detailVM), animated: true)
   }
 }
