@@ -7,49 +7,49 @@
 
 import Foundation
 
-enum SeriesSearchState {
-  case none
-  case loading
-  case loaded([SeriesListCellModel])
-  case empty
-  case error
-}
 
 protocol SearchSeriesViewModelProtocol {
-  var statePublisher: Published<SeriesSearchState>.Publisher { get }
+  var statePublisher: Published<RegularStates<[SeriesListCellModel]>>.Publisher { get }
   func search(text: String)
   func getId(for row: Int) -> Int?
 }
 
-class SearchSeriesViewModel: SearchSeriesViewModelProtocol {
+class SearchSeriesViewModel: SearchSeriesViewModelProtocol, RegularStateViewModelProtocol {
   
-  @Published var state: SeriesSearchState = .none
-  var statePublisher: Published<SeriesSearchState>.Publisher { $state }
+  @Published var state: RegularStates<[SeriesListCellModel]> = .idle
+  var statePublisher: Published<RegularStates<[SeriesListCellModel]>>.Publisher { $state }
   
-  let listAPI: SeriesListAPIProtocol
+  let listAPI: SeriesAPI
   private var fetching = false
   var series: [Series] = []
-  
-  init(listAPI: SeriesListAPIProtocol = SeriesListAPI()) {
+  private var searchedText = ""
+  init(listAPI: SeriesAPI = SeriesAPI()) {
     self.listAPI = listAPI
   }
   
   func search(text: String) {
     guard !fetching else { return }
-    fetching = true
     state = .loading
+    searchedText = text
+    fetching = true
     Task {
       do {
-        guard let searchResults = try? await listAPI.searchSeries(query: text.lowercased()) else { return }
+        let searchResults = try await listAPI.searchSeries(query: text.lowercased())
         series = searchResults.map({ $0.show })
         let models = series.map({SeriesListCellModel(series: $0)})
-        state = .loaded(models)
+        state = .success(models)
         fetching = false
       } catch let error as ServiceError {
-        print(error)
+        state = .error(error, searchRetry)
+        fetching = false
       }
     }
   }
+  
+  private func searchRetry() {
+    search(text: searchedText)
+  }
+  
   func getId(for row: Int) -> Int? {
     guard row < series.count else { return nil }
     return series[row].id

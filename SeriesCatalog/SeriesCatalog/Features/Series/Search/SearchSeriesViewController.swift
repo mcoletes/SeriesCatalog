@@ -8,11 +8,13 @@
 import UIKit
 import Combine
 
-class SearchSeriesViewController: UITableViewController, LoadableProtocol {
+class SearchSeriesViewController: UITableViewController, LoadableProtocol, ErrorProtocol {
   
-  let viewModel: SearchSeriesViewModelProtocol
-  var cancellables: Set<AnyCancellable> = []
-  lazy var datasource: TableDataSource = makeDataSource()
+  // MARK: - Properties
+
+  private let viewModel: SearchSeriesViewModelProtocol
+  private var cancellables: Set<AnyCancellable> = []
+  private lazy var datasource: TableDataSource = makeDataSource()
 
   init(viewModel: SearchSeriesViewModelProtocol = SearchSeriesViewModel()) {
     self.viewModel = viewModel
@@ -23,11 +25,15 @@ class SearchSeriesViewController: UITableViewController, LoadableProtocol {
     fatalError("init(coder:) has not been implemented")
   }
   
+  // MARK: - Life Cycle
+
   override func viewDidLoad() {
     super.viewDidLoad()
     title = "Search"
     setup()
   }
+  
+  // MARK: - Methods
   
   private func setup() {
     setupSearchController()
@@ -41,7 +47,7 @@ class SearchSeriesViewController: UITableViewController, LoadableProtocol {
     tableView.register(SeriesListCell.self)
   }
   
-  func bind() {
+  private func bind() {
     viewModel.statePublisher
       .receive(on: RunLoop.main)
       .sink { [weak self] state in
@@ -50,17 +56,17 @@ class SearchSeriesViewController: UITableViewController, LoadableProtocol {
       }.store(in: &cancellables)
   }
   
-  private func handleState(state: SeriesSearchState) {
+  private func handleState(state: RegularStates<[SeriesListCellModel]>) {
     
+    state == .loading ? showLoading(): hideLoading()
     switch state {
-    case .loading:
-      showLoading()
-    case .loaded(let models):
-      hideLoading()
+    case .success(let models):
       var snapshot = Snapshot()
       snapshot.appendSections([0])
       snapshot.appendItems(models, toSection: 0)
       datasource.apply(snapshot)
+    case .error(let error, let action):
+      showError(serviceError: error, action: action)
     default:
       break
     }
@@ -74,6 +80,8 @@ class SearchSeriesViewController: UITableViewController, LoadableProtocol {
     navigationItem.searchController = search
   }
   
+  // MARK: - Table view data source
+
   func makeDataSource() -> TableDataSource{
     return TableDataSource(tableView: tableView) { tableView, indexPath, model in
       let cell: SeriesListCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
@@ -82,12 +90,16 @@ class SearchSeriesViewController: UITableViewController, LoadableProtocol {
     }
   }
   
+  // MARK: - Table view delegate
+
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     guard let id = viewModel.getId(for: indexPath.row) else { return }
     let detailVM = SeriesDetailViewModel(id: id)
     navigationController?.pushViewController(SeriesDetailViewController(viewModel: detailVM), animated: true)
   }
 }
+
+// MARK: - UISearchBarDelegate
 
 extension SearchSeriesViewController: UISearchBarDelegate {
   

@@ -33,6 +33,10 @@ extension URLRequestProtocol {
     return "https://api.tvmaze.com/"
   }
   
+  var httpMethod: HTTPMethod {
+    return .get
+  }
+  
   var headers: [String: String] {
     return [:]
   }

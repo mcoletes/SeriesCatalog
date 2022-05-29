@@ -37,7 +37,6 @@ struct SeriesDetailModels {
     static func == (lhs: SeriesDetailModels.Section, rhs: SeriesDetailModels.Section) -> Bool {
       lhs.id == rhs.id
     }
-   
   }
   
   struct Model {
@@ -47,6 +46,7 @@ struct SeriesDetailModels {
     init(seriesDetail: SeriesDetail) {
       mainDetailSection = Section(type: .empty, rows: [.logoAndTitle(seriesDetail.image?.original, seriesDetail.name),
                                                        .detalInfo("Summary", seriesDetail.summary?.strippedHTMLTags),
+                                                       .detalInfo("Genres", seriesDetail.genres?.joined(separator: ", ")),
                                                        .detalInfo("Days", seriesDetail.schedule?.days?.joined(separator: ", ")),
                                                        .detalInfo("Time", seriesDetail.schedule?.time)])
       let dictOfSections = Dictionary(grouping: seriesDetail.embedded?.episodes ?? [], by: { $0.season }).sorted(by: {$1.key > $0.key})
@@ -58,11 +58,4 @@ struct SeriesDetailModels {
       episodeSections = epsTemp
     }
   }
-}
-
-enum SeriesDetailState {
-  case none
-  case loading
-  case loaded(SeriesDetailModels.Model)
-  case error
 }

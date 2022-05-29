@@ -14,7 +14,8 @@ class EpisodeDetailLogoTitleCell: UITableViewCell, ReusableView, NibLoadableView
   @IBOutlet weak var titleLabel: UILabel!
   
   func setup(logoUrl: URL?, title: String?) {
-    logoImage.sd_setImage(with: logoUrl, placeholderImage: UIImage.image(name: .loading))
+    logoImage.sd_imageIndicator = SDWebImageActivityIndicator.gray
+    logoImage.sd_setImage(with: logoUrl)
     titleLabel.text = title
   }
 }

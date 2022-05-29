@@ -11,7 +11,7 @@ import Combine
 typealias TableDataSource = UITableViewDiffableDataSource<Int, SeriesListCellModel>
 typealias Snapshot = NSDiffableDataSourceSnapshot<Int, SeriesListCellModel>
 
-class SeriesTableViewController: UITableViewController, UITableViewDataSourcePrefetching {
+class SeriesTableViewController: UITableViewController, UITableViewDataSourcePrefetching, ErrorProtocol {
 
   // MARK: - Properties
 
@@ -87,16 +87,17 @@ class SeriesTableViewController: UITableViewController, UITableViewDataSourcePre
       }.store(in: &cancellables)
   }
   
-  private func handleState(state: SeriesListState) {
-    
+  private func handleState(state: RegularStates<[SeriesListCellModel]>) {
     switch state {
-    case .loaded(let models):
+    case .success(let models):
       var snapshot = datasource.snapshot()
       if snapshot.numberOfSections == 0 {
         snapshot.appendSections([0])
       }
       snapshot.appendItems(models, toSection: 0)
       datasource.apply(snapshot)
+    case .error(let error, let action):
+      showError(serviceError: error, action: action)
     default:
       break
     }

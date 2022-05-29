@@ -11,7 +11,15 @@ import Combine
 typealias SeriesDetailDataSource = UITableViewDiffableDataSource<SeriesDetailModels.Section, SeriesDetailModels.Cell>
 typealias SeriesDetailSnapshot = NSDiffableDataSourceSnapshot<SeriesDetailModels.Section, SeriesDetailModels.Cell>
 
-class SeriesDetailViewController: UITableViewController, LoadableProtocol {
+class SeriesDetailViewController: UITableViewController, LoadableProtocol, ErrorProtocol {
+  
+  // MARK: - Properties
+
+  private let viewModel: SeriesDetailViewModelProtocol
+  private var cancellables: Set<AnyCancellable> = []
+  private lazy var datasource: SeriesDetailDataSource = makeDataSource()
+  private var model: SeriesDetailModels.Model?
+  private let defaultHeaderHeight: CGFloat = 30
   
   private lazy var segmentedControl: UISegmentedControl = {
     let segmentedControl = UISegmentedControl(items: ["Details", "Episodes"])
@@ -22,11 +30,8 @@ class SeriesDetailViewController: UITableViewController, LoadableProtocol {
     return segmentedControl
   }()
   
-  let viewModel: SeriesDetailViewModelProtocol
-  var cancellables: Set<AnyCancellable> = []
-  lazy var datasource: SeriesDetailDataSource = makeDataSource()
-  private var model: SeriesDetailModels.Model?
-  
+  // MARK: - Initializer
+
   init(viewModel: SeriesDetailViewModelProtocol) {
     self.viewModel = viewModel
     super.init(nibName: nil, bundle: nil)
@@ -36,6 +41,8 @@ class SeriesDetailViewController: UITableViewController, LoadableProtocol {
     fatalError("init(coder:) has not been implemented")
   }
   
+  // MARK: - Life Cycle
+
   override func viewDidLoad() {
     super.viewDidLoad()
     setup()
@@ -43,6 +50,8 @@ class SeriesDetailViewController: UITableViewController, LoadableProtocol {
     navigationItem.backButtonDisplayMode = .minimal
     navigationItem.titleView = segmentedControl
   }
+  
+  // MARK: - Methods
   
   private func setup() {
     registerCells()
@@ -66,23 +75,17 @@ class SeriesDetailViewController: UITableViewController, LoadableProtocol {
       }.store(in: &cancellables)
   }
   
-  private func handleState(state: SeriesDetailState) {
+  private func handleState(state: RegularStates<SeriesDetailModels.Model>) {
+    state == .loading ? showLoading() : hideLoading()
     switch state {
-    case .loading:
-      showLoading()
-    case .loaded(let model):
-      hideLoading()
+    case .success(let model):
       self.model = model
       loadContent(with: model)
-      break
+    case .error(let error, let action):
+      showError(serviceError: error, action: action)
     default:
       break
     }
-  }
-  
-  @objc func segmentedControlValueChanged() {
-    guard let model = model else { return }
-    loadContent(with: model)
   }
   
   private func loadContent(with model: SeriesDetailModels.Model) {
@@ -111,6 +114,13 @@ class SeriesDetailViewController: UITableViewController, LoadableProtocol {
       snapshot.appendItems(section.rows, toSection: section)
     }
     datasource.apply(snapshot, animatingDifferences: true)
+  }
+  
+  // MARK: - Actions
+
+  @objc func segmentedControlValueChanged() {
+    guard let model = model else { return }
+    loadContent(with: model)
   }
   
   // MARK: - Table view data source
@@ -143,7 +153,7 @@ class SeriesDetailViewController: UITableViewController, LoadableProtocol {
   }
   
   override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    return shouldAddHeader() ? 30: 0
+    return shouldAddHeader() ? defaultHeaderHeight: 0
   }
   
   private func shouldAddHeader() -> Bool {
