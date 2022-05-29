@@ -9,14 +9,14 @@ import Foundation
 
 
 protocol SeriesDetailViewModelProtocol {
-  var statePublisher: Published<SeriesDetailState>.Publisher { get }
+  var statePublisher: Published<RegularStates<SeriesDetailModels.Model>>.Publisher { get }
   func load()
   func getEpisode(with row: Int, section: Int) -> Episode?
 }
 
-class SeriesDetailViewModel: SeriesDetailViewModelProtocol {
-  @Published var state: SeriesDetailState = .none
-  var statePublisher: Published<SeriesDetailState>.Publisher { $state }
+class SeriesDetailViewModel: SeriesDetailViewModelProtocol, RegularStateViewModelProtocol {
+  @Published var state: RegularStates<SeriesDetailModels.Model> = .idle
+  var statePublisher: Published<RegularStates<SeriesDetailModels.Model>>.Publisher { $state }
   private var episodes: [Episode] = []
   let id: Int
   let listAPI: SeriesAPI
@@ -33,7 +33,7 @@ class SeriesDetailViewModel: SeriesDetailViewModelProtocol {
         let seriesDetail = try await listAPI.fetchSeriesDetail(id: id)
         self.episodes = seriesDetail.embedded?.episodes ?? []
         let model = SeriesDetailModels.Model(seriesDetail: seriesDetail)
-        state = .loaded(model)
+        state = .success(model)
       } catch let error as ServiceError {
         state = .error(error, load)
       }
@@ -45,3 +45,4 @@ class SeriesDetailViewModel: SeriesDetailViewModelProtocol {
     return episode
   }
 }
+

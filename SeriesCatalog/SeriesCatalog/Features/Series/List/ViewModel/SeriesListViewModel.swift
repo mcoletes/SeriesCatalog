@@ -7,23 +7,16 @@
 
 import Foundation
 
-enum SeriesListState {
-  case none
-  case loading
-  case loaded([SeriesListCellModel])
-  case error(ServiceError, Action)
-}
-
 protocol SeriesListViewModelProtocol {
-  var statePublisher: Published<SeriesListState>.Publisher { get }
+  var statePublisher: Published<RegularStates<[SeriesListCellModel]>>.Publisher { get }
   func load()
   func prefetching(row: Int)
   func getId(for row: Int) -> Int?
 }
 
-class SeriesListViewModel: SeriesListViewModelProtocol {
-  @Published var state: SeriesListState = .none
-  var statePublisher: Published<SeriesListState>.Publisher { $state }
+class SeriesListViewModel: SeriesListViewModelProtocol, RegularStateViewModelProtocol {
+  @Published var state: RegularStates<[SeriesListCellModel]> = .idle
+  var statePublisher: Published<RegularStates<[SeriesListCellModel]>>.Publisher { $state }
   private let listAPI: SeriesAPI
   private var page: Int = 0
   private var fetching: Bool = false
@@ -44,7 +37,7 @@ class SeriesListViewModel: SeriesListViewModelProtocol {
         let series = try await listAPI.fetchSeries(page: page)
         self.series.append(contentsOf: series)
         let models = series.map({SeriesListCellModel(series: $0)})
-        state = .loaded(models)
+        state = .success(models)
         page += 1
         fetching = false
       } catch let error as ServiceError {

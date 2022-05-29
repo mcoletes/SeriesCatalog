@@ -87,10 +87,9 @@ class SeriesTableViewController: UITableViewController, UITableViewDataSourcePre
       }.store(in: &cancellables)
   }
   
-  private func handleState(state: SeriesListState) {
-    
+  private func handleState(state: RegularStates<[SeriesListCellModel]>) {
     switch state {
-    case .loaded(let models):
+    case .success(let models):
       var snapshot = datasource.snapshot()
       if snapshot.numberOfSections == 0 {
         snapshot.appendSections([0])

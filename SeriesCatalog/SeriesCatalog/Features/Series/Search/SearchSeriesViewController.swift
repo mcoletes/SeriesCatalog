@@ -56,13 +56,11 @@ class SearchSeriesViewController: UITableViewController, LoadableProtocol, Error
       }.store(in: &cancellables)
   }
   
-  private func handleState(state: SeriesSearchState) {
+  private func handleState(state: RegularStates<[SeriesListCellModel]>) {
     
+    state == .loading ? showLoading(): hideLoading()
     switch state {
-    case .loading:
-      showLoading()
-    case .loaded(let models):
-      hideLoading()
+    case .success(let models):
       var snapshot = Snapshot()
       snapshot.appendSections([0])
       snapshot.appendItems(models, toSection: 0)

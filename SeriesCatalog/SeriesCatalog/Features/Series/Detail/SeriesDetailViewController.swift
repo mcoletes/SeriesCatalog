@@ -75,15 +75,12 @@ class SeriesDetailViewController: UITableViewController, LoadableProtocol, Error
       }.store(in: &cancellables)
   }
   
-  private func handleState(state: SeriesDetailState) {
+  private func handleState(state: RegularStates<SeriesDetailModels.Model>) {
+    state == .loading ? showLoading() : hideLoading()
     switch state {
-    case .loading:
-      showLoading()
-    case .loaded(let model):
-      hideLoading()
+    case .success(let model):
       self.model = model
       loadContent(with: model)
-      break
     case .error(let error, let action):
       showError(serviceError: error, action: action)
     default:

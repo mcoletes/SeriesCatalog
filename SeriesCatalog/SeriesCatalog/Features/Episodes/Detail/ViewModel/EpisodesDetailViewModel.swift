@@ -22,7 +22,7 @@ protocol EpisodesDetailViewModelProtocol {
   func load()
 }
 
-class EpisodesDetailViewModel: EpisodesDetailViewModelProtocol {
+class EpisodesDetailViewModel: EpisodesDetailViewModelProtocol, StateViewModelProtocol {
   @Published var state: EpisodesDetailState = .none
   var statePublisher: Published<EpisodesDetailState>.Publisher { $state }
   

@@ -7,23 +7,17 @@
 
 import Foundation
 
-enum SeriesSearchState {
-  case none
-  case loading
-  case loaded([SeriesListCellModel])
-  case error(ServiceError, Action)
-}
 
 protocol SearchSeriesViewModelProtocol {
-  var statePublisher: Published<SeriesSearchState>.Publisher { get }
+  var statePublisher: Published<RegularStates<[SeriesListCellModel]>>.Publisher { get }
   func search(text: String)
   func getId(for row: Int) -> Int?
 }
 
-class SearchSeriesViewModel: SearchSeriesViewModelProtocol {
+class SearchSeriesViewModel: SearchSeriesViewModelProtocol, RegularStateViewModelProtocol {
   
-  @Published var state: SeriesSearchState = .none
-  var statePublisher: Published<SeriesSearchState>.Publisher { $state }
+  @Published var state: RegularStates<[SeriesListCellModel]> = .idle
+  var statePublisher: Published<RegularStates<[SeriesListCellModel]>>.Publisher { $state }
   
   let listAPI: SeriesAPI
   private var fetching = false
@@ -43,7 +37,7 @@ class SearchSeriesViewModel: SearchSeriesViewModelProtocol {
         let searchResults = try await listAPI.searchSeries(query: text.lowercased())
         series = searchResults.map({ $0.show })
         let models = series.map({SeriesListCellModel(series: $0)})
-        state = .loaded(models)
+        state = .success(models)
         fetching = false
       } catch let error as ServiceError {
         state = .error(error, searchRetry)

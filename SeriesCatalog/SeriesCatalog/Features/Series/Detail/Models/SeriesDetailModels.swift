@@ -58,10 +58,3 @@ struct SeriesDetailModels {
     }
   }
 }
-
-enum SeriesDetailState {
-  case none
-  case loading
-  case loaded(SeriesDetailModels.Model)
-  case error(ServiceError, Action)
-}
