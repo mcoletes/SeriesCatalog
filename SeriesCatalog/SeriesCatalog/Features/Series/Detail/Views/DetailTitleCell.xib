@@ -18,6 +18,9 @@
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BBg-1S-0Re">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="194"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="194" id="upa-1h-j69"/>
+                        </constraints>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0Ie-LP-rAs">
                         <rect key="frame" x="16" y="48" width="90" height="135"/>
@@ -47,7 +50,6 @@
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="0Ie-LP-rAs" firstAttribute="top" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="top" constant="48" id="2ii-kH-h7J"/>
                     <constraint firstAttribute="trailing" secondItem="BBg-1S-0Re" secondAttribute="trailing" id="G0D-Nq-fvJ"/>
                     <constraint firstItem="0Ie-LP-rAs" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="KBL-2l-VmX"/>
                     <constraint firstItem="3tW-qM-Kr0" firstAttribute="leading" secondItem="0Ie-LP-rAs" secondAttribute="trailing" constant="8" symbolic="YES" id="Pt8-yJ-3Ho"/>

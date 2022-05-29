@@ -29,6 +29,7 @@ class EpisodesDetailViewController: UITableViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    title = "Episode"
     setup()
     viewModel.load()
   }
@@ -39,7 +40,7 @@ class EpisodesDetailViewController: UITableViewController {
   }
   
   private func registerCells() {
-    tableView.register(DetailTitleCell.self)
+    tableView.register(EpisodeDetailLogoTitleCell.self)
     tableView.register(DetailInfoCell.self)
   }
   
@@ -70,8 +71,8 @@ class EpisodesDetailViewController: UITableViewController {
     return EpisodesDetailDataSource(tableView: tableView) { tableView, indexPath, model in
       switch model {
       case .logoAndTitle(let imageUrl, let title):
-        let cell: DetailTitleCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-        cell.setup(title: title, imageURL: imageUrl)
+        let cell: EpisodeDetailLogoTitleCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+        cell.setup(logoUrl: imageUrl, title: title)
         return cell
       case .detalInfo(let title, let description):
         let cell: DetailInfoCell = tableView.dequeueReusableCell(forIndexPath: indexPath)

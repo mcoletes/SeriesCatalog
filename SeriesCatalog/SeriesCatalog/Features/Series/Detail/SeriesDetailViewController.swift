@@ -40,6 +40,7 @@ class SeriesDetailViewController: UITableViewController, LoadableProtocol {
     super.viewDidLoad()
     setup()
     viewModel.load()
+    navigationItem.backButtonDisplayMode = .minimal
     navigationItem.titleView = segmentedControl
   }
   
