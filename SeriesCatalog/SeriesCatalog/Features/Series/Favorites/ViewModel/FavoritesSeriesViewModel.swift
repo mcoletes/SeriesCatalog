@@ -7,17 +7,6 @@
 
 import Foundation
 
-enum FavoriteSeriesStates {
-  case idle
-  case success([SeriesListCellModel])
-}
-
-enum FavoriteSortingOrder: Int {
-  case insertion
-  case ascending
-  case descending
-}
-
 protocol FavoritesViewModelProtocol {
   var statePublisher: Published<FavoriteSeriesStates>.Publisher { get }
   func load()

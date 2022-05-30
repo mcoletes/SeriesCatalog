@@ -89,6 +89,14 @@ class PeopleSearchViewController: UICollectionViewController, LoadableProtocol, 
       return cell
     }
   }
+  
+  // MARK: UICollectionViewDelegate
+  
+  override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    guard let person = viewModel.getPerson(for: indexPath.row) else { return }
+    let personDetailVM = PersonDetailViewModel(person: person)
+    navigationController?.pushViewController(PersonDetailViewController(viewModel: personDetailVM), animated: true)
+  }
 }
 
 // MARK: - UISearchBarDelegate

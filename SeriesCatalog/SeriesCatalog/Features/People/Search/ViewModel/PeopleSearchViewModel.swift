@@ -10,7 +10,7 @@ import Foundation
 protocol PeopleSearchViewModelProtocol {
   var statePublisher: Published<RegularStates<[PeopleSearchModel]>>.Publisher { get }
   func search(text: String)
-  func getId(for row: Int) -> Int?
+  func getPerson(for row: Int) -> Person?
 }
 
 class PeopleSearchViewModel: PeopleSearchViewModelProtocol {
@@ -50,9 +50,9 @@ class PeopleSearchViewModel: PeopleSearchViewModelProtocol {
     search(text: searchedText)
   }
   
-  func getId(for row: Int) -> Int? {
+  func getPerson(for row: Int) -> Person? {
     guard row < people.count else { return nil }
-    return people[row].id
+    return people[row]
   }
 }
 
