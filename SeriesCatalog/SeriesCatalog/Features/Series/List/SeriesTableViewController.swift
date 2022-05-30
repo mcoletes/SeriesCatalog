@@ -8,7 +8,7 @@
 import UIKit
 import Combine
 
-typealias TableDataSource = UITableViewDiffableDataSource<Int, SeriesListCellModel>
+typealias SeriesListTableDataSource = UITableViewDiffableDataSource<Int, SeriesListCellModel>
 typealias Snapshot = NSDiffableDataSourceSnapshot<Int, SeriesListCellModel>
 
 class SeriesTableViewController: UITableViewController, UITableViewDataSourcePrefetching, ErrorProtocol {
@@ -17,7 +17,7 @@ class SeriesTableViewController: UITableViewController, UITableViewDataSourcePre
 
   private let viewModel: SeriesListViewModelProtocol
   private var cancellables: Set<AnyCancellable> = []
-  private lazy var datasource: TableDataSource = makeDataSource()
+  private lazy var datasource: SeriesListTableDataSource = makeDataSource()
   
   // MARK: - Initializers
 
@@ -104,8 +104,8 @@ class SeriesTableViewController: UITableViewController, UITableViewDataSourcePre
   
   // MARK: - Table view data source
   
-  func makeDataSource() -> TableDataSource{
-    return TableDataSource(tableView: tableView) { tableView, indexPath, model in
+  func makeDataSource() -> SeriesListTableDataSource{
+    return SeriesListTableDataSource(tableView: tableView) { tableView, indexPath, model in
       let cell: SeriesListCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
       cell.setup(with: model)
       return cell

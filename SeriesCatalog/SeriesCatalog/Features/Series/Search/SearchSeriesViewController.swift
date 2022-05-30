@@ -14,7 +14,7 @@ class SearchSeriesViewController: UITableViewController, LoadableProtocol, Error
 
   private let viewModel: SearchSeriesViewModelProtocol
   private var cancellables: Set<AnyCancellable> = []
-  private lazy var datasource: TableDataSource = makeDataSource()
+  private lazy var datasource: SeriesListTableDataSource = makeDataSource()
 
   init(viewModel: SearchSeriesViewModelProtocol = SearchSeriesViewModel()) {
     self.viewModel = viewModel
@@ -82,8 +82,8 @@ class SearchSeriesViewController: UITableViewController, LoadableProtocol, Error
   
   // MARK: - Table view data source
 
-  func makeDataSource() -> TableDataSource{
-    return TableDataSource(tableView: tableView) { tableView, indexPath, model in
+  func makeDataSource() -> SeriesListTableDataSource{
+    return SeriesListTableDataSource(tableView: tableView) { tableView, indexPath, model in
       let cell: SeriesListCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
       cell.setup(with: model)
       return cell

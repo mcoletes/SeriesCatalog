@@ -22,6 +22,18 @@
 		94AEB3CF2844226D007630AB /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AEB3CE2844226D007630AB /* TabBarController.swift */; };
 		94AEB3D128442299007630AB /* TabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AEB3D028442299007630AB /* TabBarViewModel.swift */; };
 		94AEB3D5284422C9007630AB /* TabBarModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AEB3D4284422C9007630AB /* TabBarModels.swift */; };
+		94AEB3D9284429EE007630AB /* PeopleSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AEB3D8284429EE007630AB /* PeopleSearchViewController.swift */; };
+		94AEB3DB28442B19007630AB /* PeopleAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AEB3DA28442B19007630AB /* PeopleAPI.swift */; };
+		94AEB3DF28444B56007630AB /* UICollectionView+Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AEB3DE28444B56007630AB /* UICollectionView+Register.swift */; };
+		94AEB3E228444BC1007630AB /* RegisterProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AEB3E128444BC1007630AB /* RegisterProtocols.swift */; };
+		94AEB3E628444C01007630AB /* PeopleListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AEB3E428444C01007630AB /* PeopleListCell.swift */; };
+		94AEB3E728444C01007630AB /* PeopleListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94AEB3E528444C01007630AB /* PeopleListCell.xib */; };
+		94AEB3E928445119007630AB /* ImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AEB3E828445119007630AB /* ImageView+Extension.swift */; };
+		94AEB3EC28445229007630AB /* PeopleSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AEB3EB28445229007630AB /* PeopleSearchViewModel.swift */; };
+		94AEB3EF284452FE007630AB /* PeopleSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AEB3EE284452FE007630AB /* PeopleSearchModel.swift */; };
+		94AEB3F1284453FD007630AB /* People.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AEB3F0284453FD007630AB /* People.swift */; };
+		94AEB3F5284458FD007630AB /* PeopleSearchProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AEB3F4284458FD007630AB /* PeopleSearchProvider.swift */; };
+		94AEB3F828445EE3007630AB /* SearchCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AEB3F728445EE3007630AB /* SearchCollectionViewLayout.swift */; };
 		94EDC86928417BB7005D8375 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EDC86828417BB7005D8375 /* AppDelegate.swift */; };
 		94EDC86B28417BB7005D8375 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EDC86A28417BB7005D8375 /* SceneDelegate.swift */; };
 		94EDC87228417BB8005D8375 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94EDC87128417BB8005D8375 /* Assets.xcassets */; };
@@ -88,6 +100,18 @@
 		94AEB3CE2844226D007630AB /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		94AEB3D028442299007630AB /* TabBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewModel.swift; sourceTree = "<group>"; };
 		94AEB3D4284422C9007630AB /* TabBarModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarModels.swift; sourceTree = "<group>"; };
+		94AEB3D8284429EE007630AB /* PeopleSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleSearchViewController.swift; sourceTree = "<group>"; };
+		94AEB3DA28442B19007630AB /* PeopleAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleAPI.swift; sourceTree = "<group>"; };
+		94AEB3DE28444B56007630AB /* UICollectionView+Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Register.swift"; sourceTree = "<group>"; };
+		94AEB3E128444BC1007630AB /* RegisterProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterProtocols.swift; sourceTree = "<group>"; };
+		94AEB3E428444C01007630AB /* PeopleListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListCell.swift; sourceTree = "<group>"; };
+		94AEB3E528444C01007630AB /* PeopleListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PeopleListCell.xib; sourceTree = "<group>"; };
+		94AEB3E828445119007630AB /* ImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ImageView+Extension.swift"; sourceTree = "<group>"; };
+		94AEB3EB28445229007630AB /* PeopleSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleSearchViewModel.swift; sourceTree = "<group>"; };
+		94AEB3EE284452FE007630AB /* PeopleSearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleSearchModel.swift; sourceTree = "<group>"; };
+		94AEB3F0284453FD007630AB /* People.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = People.swift; sourceTree = "<group>"; };
+		94AEB3F4284458FD007630AB /* PeopleSearchProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleSearchProvider.swift; sourceTree = "<group>"; };
+		94AEB3F728445EE3007630AB /* SearchCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewLayout.swift; sourceTree = "<group>"; };
 		94EDC86528417BB7005D8375 /* SeriesCatalog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeriesCatalog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94EDC86828417BB7005D8375 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		94EDC86A28417BB7005D8375 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -246,6 +270,78 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		94AEB3D6284429CC007630AB /* People */ = {
+			isa = PBXGroup;
+			children = (
+				94AEB3D7284429D7007630AB /* Search */,
+			);
+			path = People;
+			sourceTree = "<group>";
+		};
+		94AEB3D7284429D7007630AB /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				94AEB3F628445ED0007630AB /* CollectionLayout */,
+				94AEB3F3284458EE007630AB /* Provider */,
+				94AEB3ED284452F3007630AB /* Models */,
+				94AEB3E328444BEF007630AB /* Views */,
+				94AEB3EA28445219007630AB /* ViewModel */,
+				94AEB3D8284429EE007630AB /* PeopleSearchViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		94AEB3DC28444992007630AB /* RegisterHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				94EDC89A28417D1A005D8375 /* UITableView+Register.swift */,
+				94AEB3DE28444B56007630AB /* UICollectionView+Register.swift */,
+				94AEB3E128444BC1007630AB /* RegisterProtocols.swift */,
+			);
+			path = RegisterHelpers;
+			sourceTree = "<group>";
+		};
+		94AEB3E328444BEF007630AB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				94AEB3E428444C01007630AB /* PeopleListCell.swift */,
+				94AEB3E528444C01007630AB /* PeopleListCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		94AEB3EA28445219007630AB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				94AEB3EB28445229007630AB /* PeopleSearchViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		94AEB3ED284452F3007630AB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				94AEB3EE284452FE007630AB /* PeopleSearchModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		94AEB3F3284458EE007630AB /* Provider */ = {
+			isa = PBXGroup;
+			children = (
+				94AEB3F4284458FD007630AB /* PeopleSearchProvider.swift */,
+			);
+			path = Provider;
+			sourceTree = "<group>";
+		};
+		94AEB3F628445ED0007630AB /* CollectionLayout */ = {
+			isa = PBXGroup;
+			children = (
+				94AEB3F728445EE3007630AB /* SearchCollectionViewLayout.swift */,
+			);
+			path = CollectionLayout;
+			sourceTree = "<group>";
+		};
 		94EDC85C28417BB7005D8375 = {
 			isa = PBXGroup;
 			children = (
@@ -314,9 +410,10 @@
 		94EDC89928417D1A005D8375 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				94EDC89A28417D1A005D8375 /* UITableView+Register.swift */,
+				94AEB3DC28444992007630AB /* RegisterHelpers */,
 				940F159B2841CEAE003A5297 /* String+Extension.swift */,
 				940F159D2841D483003A5297 /* UIView+Extensions.swift */,
+				94AEB3E828445119007630AB /* ImageView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -335,6 +432,7 @@
 		94EDC8A028417D1A005D8375 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				94AEB3D6284429CC007630AB /* People */,
 				94AEB3CD2844224F007630AB /* Tabbar */,
 				94FDDCB3284309EA00105705 /* Episodes */,
 				94FDDC9D2842D29200105705 /* Series */,
@@ -380,6 +478,7 @@
 			isa = PBXGroup;
 			children = (
 				94EDC8C1284187BC005D8375 /* Series.swift */,
+				94AEB3F0284453FD007630AB /* People.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -388,6 +487,7 @@
 			isa = PBXGroup;
 			children = (
 				94EDC8BE28418677005D8375 /* SeriesAPI.swift */,
+				94AEB3DA28442B19007630AB /* PeopleAPI.swift */,
 			);
 			path = APIs;
 			sourceTree = "<group>";
@@ -583,6 +683,7 @@
 				94AEB3C128440228007630AB /* EpisodeDetailLogoTitleCell.xib in Resources */,
 				94EDC87528417BB8005D8375 /* LaunchScreen.storyboard in Resources */,
 				94FDDCAD2842E7A400105705 /* DetailInfoImageCell.xib in Resources */,
+				94AEB3E728444C01007630AB /* PeopleListCell.xib in Resources */,
 				94EDC87228417BB8005D8375 /* Assets.xcassets in Resources */,
 				94FDDCA52842D8F700105705 /* DetailInfoCell.xib in Resources */,
 				94EDC8B528417E72005D8375 /* SeriesListCell.xib in Resources */,
@@ -618,6 +719,7 @@
 				94EDC86928417BB7005D8375 /* AppDelegate.swift in Sources */,
 				94FDDCAC2842E7A400105705 /* DetailInfoImageCell.swift in Sources */,
 				94AEB3CF2844226D007630AB /* TabBarController.swift in Sources */,
+				94AEB3E928445119007630AB /* ImageView+Extension.swift in Sources */,
 				94FDDCA02842D60A00105705 /* SeriesDetailModels.swift in Sources */,
 				94FDDCB02842FC7F00105705 /* LoadableProtocol.swift in Sources */,
 				94FDDC982842C6B800105705 /* SeriesDetailViewController.swift in Sources */,
@@ -627,15 +729,22 @@
 				94AEB3C028440228007630AB /* EpisodeDetailLogoTitleCell.swift in Sources */,
 				94EDC8A428417D1A005D8375 /* URLRequestProtocol.swift in Sources */,
 				94AEB3C328441407007630AB /* SeriesListProvider.swift in Sources */,
+				94AEB3F828445EE3007630AB /* SearchCollectionViewLayout.swift in Sources */,
 				94EDC86B28417BB7005D8375 /* SceneDelegate.swift in Sources */,
+				94AEB3EC28445229007630AB /* PeopleSearchViewModel.swift in Sources */,
 				94FDDCA42842D8F700105705 /* DetailInfoCell.swift in Sources */,
+				94AEB3DB28442B19007630AB /* PeopleAPI.swift in Sources */,
 				940F159C2841CEAE003A5297 /* String+Extension.swift in Sources */,
+				94AEB3DF28444B56007630AB /* UICollectionView+Register.swift in Sources */,
 				94EDC8A228417D1A005D8375 /* NetworkProvider.swift in Sources */,
 				94EDC8BF28418677005D8375 /* SeriesAPI.swift in Sources */,
+				94AEB3E628444C01007630AB /* PeopleListCell.swift in Sources */,
+				94AEB3E228444BC1007630AB /* RegisterProtocols.swift in Sources */,
 				94AEB3D128442299007630AB /* TabBarViewModel.swift in Sources */,
 				947F588628426F9400E5A2E3 /* AppearanceManager.swift in Sources */,
 				94AEB3CC28441DCE007630AB /* StateViewModelProtocol.swift in Sources */,
 				94EDC8C2284187BC005D8375 /* Series.swift in Sources */,
+				94AEB3D9284429EE007630AB /* PeopleSearchViewController.swift in Sources */,
 				94FDDCB628430A0500105705 /* EpisodesDetailViewController.swift in Sources */,
 				94FDDC9C2842C72B00105705 /* SeriesDetailViewModel.swift in Sources */,
 				940F159E2841D483003A5297 /* UIView+Extensions.swift in Sources */,
@@ -643,8 +752,11 @@
 				94FDDCB22843025100105705 /* ErrorProtocol.swift in Sources */,
 				94EDC8B028417E02005D8375 /* SeriesListViewModel.swift in Sources */,
 				94AEB3D5284422C9007630AB /* TabBarModels.swift in Sources */,
+				94AEB3F1284453FD007630AB /* People.swift in Sources */,
 				94AEB3C92844144A007630AB /* SeriesDetailProvider.swift in Sources */,
 				94AEB3BC2843F5E0007630AB /* EpisodesDetailViewModel.swift in Sources */,
+				94AEB3EF284452FE007630AB /* PeopleSearchModel.swift in Sources */,
+				94AEB3F5284458FD007630AB /* PeopleSearchProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

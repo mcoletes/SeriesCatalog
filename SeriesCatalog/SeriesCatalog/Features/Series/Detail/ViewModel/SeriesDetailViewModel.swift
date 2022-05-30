@@ -19,9 +19,9 @@ class SeriesDetailViewModel: SeriesDetailViewModelProtocol, RegularStateViewMode
   var statePublisher: Published<RegularStates<SeriesDetailModels.Model>>.Publisher { $state }
   private var episodes: [Episode] = []
   let id: Int
-  let listAPI: SeriesAPI
+  let listAPI: SeriesAPIProtocol
   
-  init(id: Int, listAPI: SeriesAPI = SeriesAPI()) {
+  init(id: Int, listAPI: SeriesAPIProtocol = SeriesAPI()) {
     self.id = id
     self.listAPI = listAPI
   }

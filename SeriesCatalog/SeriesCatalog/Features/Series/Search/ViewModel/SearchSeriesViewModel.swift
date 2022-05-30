@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 protocol SearchSeriesViewModelProtocol {
   var statePublisher: Published<RegularStates<[SeriesListCellModel]>>.Publisher { get }
   func search(text: String)
@@ -19,11 +18,11 @@ class SearchSeriesViewModel: SearchSeriesViewModelProtocol, RegularStateViewMode
   @Published var state: RegularStates<[SeriesListCellModel]> = .idle
   var statePublisher: Published<RegularStates<[SeriesListCellModel]>>.Publisher { $state }
   
-  let listAPI: SeriesAPI
+  let listAPI: SeriesAPIProtocol
   private var fetching = false
   var series: [Series] = []
   private var searchedText = ""
-  init(listAPI: SeriesAPI = SeriesAPI()) {
+  init(listAPI: SeriesAPIProtocol = SeriesAPI()) {
     self.listAPI = listAPI
   }
   

@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SDWebImage
 
 struct SeriesListCellModel: Hashable {
   let id = UUID()
@@ -35,8 +34,7 @@ class SeriesListCell: UITableViewCell, NibLoadableView, ReusableView {
   }
   
   func setup(with model: SeriesListCellModel) {
-    logoView.sd_imageIndicator = SDWebImageActivityIndicator.gray
-    logoView.sd_setImage(with: model.logoURL)
+    logoView.sdLoad(with: model.logoURL)
     titleLabel.text = model.title
     genreLabel.text = model.genres
   }
