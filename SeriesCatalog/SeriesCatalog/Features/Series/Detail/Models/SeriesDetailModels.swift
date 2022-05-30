@@ -42,8 +42,9 @@ struct SeriesDetailModels {
   struct Model {
     let mainDetailSection: Section
     let episodeSections: [Section]
-    
-    init(seriesDetail: SeriesDetail) {
+    let isFavorite: Bool
+    init(seriesDetail: SeriesDetail, isFavorite: Bool) {
+      self.isFavorite = isFavorite
       mainDetailSection = Section(type: .empty, rows: [.logoAndTitle(seriesDetail.image?.original, seriesDetail.name),
                                                        .detalInfo("Summary", seriesDetail.summary?.strippedHTMLTags),
                                                        .detalInfo("Genres", seriesDetail.genres?.joined(separator: ", ")),

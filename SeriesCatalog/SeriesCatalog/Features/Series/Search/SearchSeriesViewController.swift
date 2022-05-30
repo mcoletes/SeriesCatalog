@@ -61,7 +61,7 @@ class SearchSeriesViewController: UITableViewController, LoadableProtocol, Error
     state == .loading ? showLoading(): hideLoading()
     switch state {
     case .success(let models):
-      var snapshot = Snapshot()
+      var snapshot = SeriesListSnapshot()
       snapshot.appendSections([0])
       snapshot.appendItems(models, toSection: 0)
       datasource.apply(snapshot)

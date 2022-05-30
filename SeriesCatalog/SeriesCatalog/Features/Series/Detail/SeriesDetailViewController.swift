@@ -89,6 +89,7 @@ class SeriesDetailViewController: UITableViewController, LoadableProtocol, Error
   }
   
   private func loadContent(with model: SeriesDetailModels.Model) {
+    setupFavoriteButton(isFavorite: model.isFavorite)
     switch segmentedControl.selectedSegmentIndex {
     case 0:
       loadMainDetailContent(with: model.mainDetailSection)
@@ -114,6 +115,17 @@ class SeriesDetailViewController: UITableViewController, LoadableProtocol, Error
       snapshot.appendItems(section.rows, toSection: section)
     }
     datasource.apply(snapshot, animatingDifferences: true)
+  }
+  
+  private func setupFavoriteButton(isFavorite: Bool) {
+    let imageName = isFavorite ? "heart.fill" : "heart"
+    let image = UIImage(systemName: imageName)?.withTintColor(.label).withRenderingMode(.alwaysOriginal)
+    let button = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(favoritesTapped))
+    navigationItem.rightBarButtonItem = button
+  }
+  
+  @objc private func favoritesTapped() {
+    setupFavoriteButton(isFavorite: viewModel.toggleFavorite())
   }
   
   // MARK: - Actions

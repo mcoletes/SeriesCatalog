@@ -1,78 +1,81 @@
 //
-//  SeriesTableViewController.swift
+//  FavoritesViewController.swift
 //  SeriesCatalog
 //
-//  Created by Mauro Coletes on 27/05/22.
+//  Created by Mauro Coletes on 30/05/22.
 //
 
 import UIKit
 import Combine
 
-typealias SeriesListTableDataSource = UITableViewDiffableDataSource<Int, SeriesListCellModel>
-typealias SeriesListSnapshot = NSDiffableDataSourceSnapshot<Int, SeriesListCellModel>
-
-class SeriesTableViewController: UITableViewController, UITableViewDataSourcePrefetching, ErrorProtocol {
+class FavoritesViewController: UITableViewController {
 
   // MARK: - Properties
 
-  private let viewModel: SeriesListViewModelProtocol
+  private let viewModel: FavoritesViewModelProtocol
   private var cancellables: Set<AnyCancellable> = []
   private lazy var datasource: SeriesListTableDataSource = makeDataSource()
   
+  private lazy var segmentedControl: UISegmentedControl = {
+    let segmentedControl = UISegmentedControl(items: ["Insertion", "Ascending", "Descending"])
+    segmentedControl.selectedSegmentIndex = 0
+    segmentedControl.backgroundColor = .systemBackground
+    segmentedControl.sizeToFit()
+    segmentedControl.addTarget(self, action: #selector(segmentedControlValueChanged), for: .valueChanged)
+    return segmentedControl
+  }()
+  
   // MARK: - Initializers
 
-  init(viewModel: SeriesListViewModelProtocol = SeriesListViewModel()) {
+  init(viewModel: FavoritesViewModelProtocol = FavoritesViewModel()) {
     self.viewModel = viewModel
     super.init(style: .plain)
   }
   
   required init?(coder: NSCoder) {
-    self.viewModel = SeriesListViewModel()
-    super.init(coder: coder)
+    fatalError("init(coder:) has not been implemented")
   }
   
   // MARK: - View Life Cycle
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    navigationItem.backButtonDisplayMode = .minimal
     setup()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
     viewModel.load()
   }
   
   // MARK: - Setup
   
   private func setup() {
-    barButton()
+    setupUI()
     setupTableView()
     bind()
   }
   
-  private func barButton() {
-    let button = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchTapped))
-    navigationItem.rightBarButtonItem = button
+  @objc func segmentedControlValueChanged() {
+    viewModel.sort(index: segmentedControl.selectedSegmentIndex)
+  }
+  
+  private func setupUI() {
+    navigationItem.backButtonDisplayMode = .minimal
+    navigationItem.titleView = segmentedControl
   }
   
   private func setupTableView() {
-    tableView.prefetchDataSource = self
     tableView.separatorColor = .clear
     registerCells()
-    setupTableFooterView()
   }
   
   private func registerCells() {
     tableView.register(SeriesListCell.self)
   }
   
-  private func setupTableFooterView() {
-    let activityIndicator = UIActivityIndicatorView(style: .large)
-    activityIndicator.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: 50)
-    activityIndicator.startAnimating()
-    tableView.tableFooterView = activityIndicator
-  }
   
   @objc private func searchTapped() {
-    navigationController?.pushViewController(SearchSeriesViewController(), animated: true)
   }
   
   // MARK: - Bind
@@ -86,17 +89,13 @@ class SeriesTableViewController: UITableViewController, UITableViewDataSourcePre
       }.store(in: &cancellables)
   }
   
-  private func handleState(state: RegularStates<[SeriesListCellModel]>) {
+  private func handleState(state: FavoriteSeriesStates) {
     switch state {
     case .success(let models):
-      var snapshot = datasource.snapshot()
-      if snapshot.numberOfSections == 0 {
-        snapshot.appendSections([0])
-      }
+      var snapshot = SeriesListSnapshot()
+      snapshot.appendSections([0])
       snapshot.appendItems(models, toSection: 0)
-      datasource.apply(snapshot)
-    case .error(let error, let action):
-      showError(serviceError: error, action: action)
+      datasource.apply(snapshot, animatingDifferences: false)
     default:
       break
     }
@@ -110,13 +109,6 @@ class SeriesTableViewController: UITableViewController, UITableViewDataSourcePre
       cell.setup(with: model)
       return cell
     }
-  }
-  
-  // MARK: - Table view prefetch
-  
-  func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-    guard let maxRow = indexPaths.max()?.row else { return }
-    viewModel.prefetching(row: maxRow)
   }
   
   // MARK: - Table view delegate

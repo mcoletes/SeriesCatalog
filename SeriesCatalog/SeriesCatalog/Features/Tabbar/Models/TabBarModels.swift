@@ -28,8 +28,8 @@ enum TabBarTabs: CaseIterable {
                          viewController: SeriesTableViewController())
     case .favorites:
       return TabBarModel(title: "Favorites",
-                         image: "heart",
-                         viewController: UIViewController())
+                         image: "heart.fill",
+                         viewController: FavoritesViewController())
     case .people:
       return TabBarModel(title: "People",
                          image: "person",

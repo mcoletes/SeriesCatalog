@@ -34,6 +34,10 @@
 		94AEB3F1284453FD007630AB /* People.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AEB3F0284453FD007630AB /* People.swift */; };
 		94AEB3F5284458FD007630AB /* PeopleSearchProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AEB3F4284458FD007630AB /* PeopleSearchProvider.swift */; };
 		94AEB3F828445EE3007630AB /* SearchCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AEB3F728445EE3007630AB /* SearchCollectionViewLayout.swift */; };
+		94AEB40028446ED3007630AB /* FavoritesSeriesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AEB3FF28446ED3007630AB /* FavoritesSeriesManager.swift */; };
+		94AEB40228446EDB007630AB /* UserDefaultItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AEB40128446EDB007630AB /* UserDefaultItem.swift */; };
+		94AEB4052844722A007630AB /* FavoritesSeriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AEB4042844722A007630AB /* FavoritesSeriesViewController.swift */; };
+		94AEB40828447241007630AB /* FavoritesSeriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AEB40728447241007630AB /* FavoritesSeriesViewModel.swift */; };
 		94EDC86928417BB7005D8375 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EDC86828417BB7005D8375 /* AppDelegate.swift */; };
 		94EDC86B28417BB7005D8375 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94EDC86A28417BB7005D8375 /* SceneDelegate.swift */; };
 		94EDC87228417BB8005D8375 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94EDC87128417BB8005D8375 /* Assets.xcassets */; };
@@ -112,6 +116,10 @@
 		94AEB3F0284453FD007630AB /* People.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = People.swift; sourceTree = "<group>"; };
 		94AEB3F4284458FD007630AB /* PeopleSearchProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleSearchProvider.swift; sourceTree = "<group>"; };
 		94AEB3F728445EE3007630AB /* SearchCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionViewLayout.swift; sourceTree = "<group>"; };
+		94AEB3FF28446ED3007630AB /* FavoritesSeriesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesSeriesManager.swift; sourceTree = "<group>"; };
+		94AEB40128446EDB007630AB /* UserDefaultItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultItem.swift; sourceTree = "<group>"; };
+		94AEB4042844722A007630AB /* FavoritesSeriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesSeriesViewController.swift; sourceTree = "<group>"; };
+		94AEB40728447241007630AB /* FavoritesSeriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesSeriesViewModel.swift; sourceTree = "<group>"; };
 		94EDC86528417BB7005D8375 /* SeriesCatalog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeriesCatalog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94EDC86828417BB7005D8375 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		94EDC86A28417BB7005D8375 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -195,6 +203,7 @@
 		947F588428426F8700E5A2E3 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				94AEB3FE28446EB1007630AB /* UserDefaults */,
 				947F588528426F9400E5A2E3 /* AppearanceManager.swift */,
 			);
 			path = Managers;
@@ -340,6 +349,32 @@
 				94AEB3F728445EE3007630AB /* SearchCollectionViewLayout.swift */,
 			);
 			path = CollectionLayout;
+			sourceTree = "<group>";
+		};
+		94AEB3FE28446EB1007630AB /* UserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				94AEB3FF28446ED3007630AB /* FavoritesSeriesManager.swift */,
+				94AEB40128446EDB007630AB /* UserDefaultItem.swift */,
+			);
+			path = UserDefaults;
+			sourceTree = "<group>";
+		};
+		94AEB4032844721E007630AB /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				94AEB4062844722E007630AB /* ViewModel */,
+				94AEB4042844722A007630AB /* FavoritesSeriesViewController.swift */,
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
+		94AEB4062844722E007630AB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				94AEB40728447241007630AB /* FavoritesSeriesViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		94EDC85C28417BB7005D8375 = {
@@ -515,6 +550,7 @@
 		94FDDC9D2842D29200105705 /* Series */ = {
 			isa = PBXGroup;
 			children = (
+				94AEB4032844721E007630AB /* Favorites */,
 				94FDDC932842C58900105705 /* Detail */,
 				947F587A28426BEC00E5A2E3 /* Search */,
 				94EDC8AA28417DD7005D8375 /* List */,
@@ -723,6 +759,7 @@
 				94FDDCA02842D60A00105705 /* SeriesDetailModels.swift in Sources */,
 				94FDDCB02842FC7F00105705 /* LoadableProtocol.swift in Sources */,
 				94FDDC982842C6B800105705 /* SeriesDetailViewController.swift in Sources */,
+				94AEB40028446ED3007630AB /* FavoritesSeriesManager.swift in Sources */,
 				94EDC8A128417D1A005D8375 /* UITableView+Register.swift in Sources */,
 				947F587F28426CF000E5A2E3 /* SearchSeriesViewController.swift in Sources */,
 				94FDDCA82842E53600105705 /* DetailTitleCell.swift in Sources */,
@@ -740,11 +777,13 @@
 				94EDC8BF28418677005D8375 /* SeriesAPI.swift in Sources */,
 				94AEB3E628444C01007630AB /* PeopleListCell.swift in Sources */,
 				94AEB3E228444BC1007630AB /* RegisterProtocols.swift in Sources */,
+				94AEB40828447241007630AB /* FavoritesSeriesViewModel.swift in Sources */,
 				94AEB3D128442299007630AB /* TabBarViewModel.swift in Sources */,
 				947F588628426F9400E5A2E3 /* AppearanceManager.swift in Sources */,
 				94AEB3CC28441DCE007630AB /* StateViewModelProtocol.swift in Sources */,
 				94EDC8C2284187BC005D8375 /* Series.swift in Sources */,
 				94AEB3D9284429EE007630AB /* PeopleSearchViewController.swift in Sources */,
+				94AEB40228446EDB007630AB /* UserDefaultItem.swift in Sources */,
 				94FDDCB628430A0500105705 /* EpisodesDetailViewController.swift in Sources */,
 				94FDDC9C2842C72B00105705 /* SeriesDetailViewModel.swift in Sources */,
 				940F159E2841D483003A5297 /* UIView+Extensions.swift in Sources */,
@@ -753,6 +792,7 @@
 				94EDC8B028417E02005D8375 /* SeriesListViewModel.swift in Sources */,
 				94AEB3D5284422C9007630AB /* TabBarModels.swift in Sources */,
 				94AEB3F1284453FD007630AB /* People.swift in Sources */,
+				94AEB4052844722A007630AB /* FavoritesSeriesViewController.swift in Sources */,
 				94AEB3C92844144A007630AB /* SeriesDetailProvider.swift in Sources */,
 				94AEB3BC2843F5E0007630AB /* EpisodesDetailViewModel.swift in Sources */,
 				94AEB3EF284452FE007630AB /* PeopleSearchModel.swift in Sources */,
