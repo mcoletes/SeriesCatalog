@@ -19,7 +19,6 @@ class SeriesDetailViewController: UITableViewController, LoadableProtocol, Error
   private var cancellables: Set<AnyCancellable> = []
   private lazy var datasource: SeriesDetailDataSource = makeDataSource()
   private var model: SeriesDetailModels.Model?
-  private let defaultHeaderHeight: CGFloat = 30
   
   private lazy var segmentedControl: UISegmentedControl = {
     let segmentedControl = UISegmentedControl(items: ["Details", "Episodes"])
@@ -118,7 +117,7 @@ class SeriesDetailViewController: UITableViewController, LoadableProtocol, Error
     episodesSections.forEach { section in
       snapshot.appendItems(section.rows, toSection: section)
     }
-    datasource.apply(snapshot, animatingDifferences: true)
+    datasource.apply(snapshot, animatingDifferences: false)
   }
   
   private func setupFavoriteButton(isFavorite: Bool) {
@@ -163,13 +162,13 @@ class SeriesDetailViewController: UITableViewController, LoadableProtocol, Error
   override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     guard shouldAddHeader(), let model = model, section < model.episodeSections.count else { return nil }
     let label = UILabel()
-    label.text = model.episodeSections[section].type.title
+    label.text = model.episodeSections[section].title
     label.backgroundColor = .systemBackground
     return label
   }
   
   override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    return shouldAddHeader() ? defaultHeaderHeight: 0
+    return shouldAddHeader() ? Constants.defaultHeaderheight: Constants.defaultEmptyHeaderHeight
   }
   
   private func shouldAddHeader() -> Bool {

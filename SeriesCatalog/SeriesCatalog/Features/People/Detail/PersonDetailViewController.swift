@@ -18,7 +18,6 @@ class PersonDetailViewController: UITableViewController, LoadableProtocol, Error
   private let viewModel: PersonDetailViewModelProtocol
   private var cancellables: Set<AnyCancellable> = []
   private lazy var datasource: PersonDetailDataSource = makeDataSource()
-  private let defaultHeaderHeight: CGFloat = 30
   private var model: PersonDetailModels.Model?
   
   // MARK: - Initializer
@@ -110,7 +109,7 @@ class PersonDetailViewController: UITableViewController, LoadableProtocol, Error
   }
 
   override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    return hasTitle(for: section) ? defaultHeaderHeight: 0
+    return hasTitle(for: section) ? Constants.defaultHeaderheight: Constants.defaultEmptyHeaderHeight
   }
   
   private func hasTitle(for section: Int) -> Bool {
@@ -119,7 +118,7 @@ class PersonDetailViewController: UITableViewController, LoadableProtocol, Error
   }
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    guard indexPath.section == 1, let seriesId = viewModel.getSeriesId(for: indexPath.row, section: indexPath.section) else { return }
+    guard let seriesId = viewModel.getSeriesId(for: indexPath.row, section: indexPath.section) else { return }
     let seriesDetailVM = SeriesDetailViewModel(id: seriesId)
     navigationController?.pushViewController(SeriesDetailViewController(viewModel: seriesDetailVM), animated: true)
   }

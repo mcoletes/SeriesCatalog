@@ -40,7 +40,7 @@ class PersonDetailViewModel: PersonDetailViewModelProtocol {
   }
   
   func getSeriesId(for row: Int, section: Int) -> Int? {
-    guard row < personDetail.count else { return nil }
+    guard section == 1, row < personDetail.count else { return nil }
     return personDetail[row].embedded.show?.id
   }
 }
