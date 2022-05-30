@@ -48,7 +48,7 @@ class FavoritesViewController: UITableViewController {
     viewModel.load()
   }
   
-  // MARK: - Setup
+  // MARK: - Methods
   
   private func setup() {
     setupUI()
@@ -74,12 +74,6 @@ class FavoritesViewController: UITableViewController {
     tableView.register(SeriesListCell.self)
   }
   
-  
-  @objc private func searchTapped() {
-  }
-  
-  // MARK: - Bind
-
   func bind() {
     viewModel.statePublisher
       .receive(on: RunLoop.main)

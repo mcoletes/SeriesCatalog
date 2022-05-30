@@ -17,11 +17,11 @@ class SearchSeriesViewModel: SearchSeriesViewModelProtocol, RegularStateViewMode
   
   @Published var state: RegularStates<[SeriesListCellModel]> = .idle
   var statePublisher: Published<RegularStates<[SeriesListCellModel]>>.Publisher { $state }
-  
   let listAPI: SeriesAPIProtocol
   private var fetching = false
-  var series: [Series] = []
+  private var series: [Series] = []
   private var searchedText = ""
+  
   init(listAPI: SeriesAPIProtocol = SeriesAPI()) {
     self.listAPI = listAPI
   }

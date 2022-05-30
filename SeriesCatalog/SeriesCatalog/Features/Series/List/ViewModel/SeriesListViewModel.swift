@@ -15,6 +15,7 @@ protocol SeriesListViewModelProtocol {
 }
 
 class SeriesListViewModel: SeriesListViewModelProtocol, RegularStateViewModelProtocol {
+  
   @Published var state: RegularStates<[SeriesListCellModel]> = .idle
   var statePublisher: Published<RegularStates<[SeriesListCellModel]>>.Publisher { $state }
   private let listAPI: SeriesAPIProtocol

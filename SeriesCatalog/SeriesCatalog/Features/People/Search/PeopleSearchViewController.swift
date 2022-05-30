@@ -19,7 +19,8 @@ class PeopleSearchViewController: UICollectionViewController, LoadableProtocol, 
   private var cancellables: Set<AnyCancellable> = []
   private lazy var datasource: PeopleSearchCollectionDataSource = makeDataSource()
 
-
+  // MARK: - Initializers
+  
   init(viewModel: PeopleSearchViewModelProtocol = PeopleSearchViewModel()) {
     self.viewModel = viewModel
     super.init(collectionViewLayout: SearchCollectionViewLayout().getLayout())
@@ -35,6 +36,8 @@ class PeopleSearchViewController: UICollectionViewController, LoadableProtocol, 
     super.viewDidLoad()
     setup()
   }
+  
+  // MARK: - Methods
   
   private func setup() {
     setupUI()

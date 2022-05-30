@@ -17,9 +17,9 @@ class PersonDetailViewModel: PersonDetailViewModelProtocol {
   
   @Published var state: RegularStates<PersonDetailModels.Model> = .idle
   var statePublisher: Published<RegularStates<PersonDetailModels.Model>>.Publisher { $state }
-  let peopleAPI: PeopleAPIProtocol
-  let person: Person
-  var personDetail: [PersonDetailResult] = []
+  private let peopleAPI: PeopleAPIProtocol
+  private let person: Person
+  private var personDetail: [PersonDetailResult] = []
 
   init(peopleAPI: PeopleAPIProtocol = PeopleAPI(), person: Person) {
     self.peopleAPI = peopleAPI

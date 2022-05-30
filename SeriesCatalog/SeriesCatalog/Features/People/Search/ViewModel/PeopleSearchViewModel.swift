@@ -17,11 +17,11 @@ class PeopleSearchViewModel: PeopleSearchViewModelProtocol {
   
   @Published var state: RegularStates<[PeopleSearchModel]> = .idle
   var statePublisher: Published<RegularStates<[PeopleSearchModel]>>.Publisher { $state }
-  
-  let peopleAPI: PeopleAPIProtocol
+  private let peopleAPI: PeopleAPIProtocol
   private var fetching = false
-  var people: [Person] = []
+  private var people: [Person] = []
   private var searchedText = ""
+  
   init(peopleAPI: PeopleAPIProtocol = PeopleAPI()) {
     self.peopleAPI = peopleAPI
   }

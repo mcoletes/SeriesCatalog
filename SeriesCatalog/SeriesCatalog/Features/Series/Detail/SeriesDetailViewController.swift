@@ -163,6 +163,8 @@ class SeriesDetailViewController: UITableViewController, LoadableProtocol, Error
     }
   }
   
+  // MARK: - Table view delegate
+  
   override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     guard shouldAddHeader(), let model = model, section < model.episodeSections.count else { return nil }
     let label = UILabel()

@@ -39,7 +39,7 @@ class SeriesTableViewController: UITableViewController, UITableViewDataSourcePre
     viewModel.load()
   }
   
-  // MARK: - Setup
+  // MARK: - Methods
   
   private func setup() {
     setupUI()
@@ -80,8 +80,6 @@ class SeriesTableViewController: UITableViewController, UITableViewDataSourcePre
     navigationController?.pushViewController(SearchSeriesViewController(), animated: true)
   }
   
-  // MARK: - Bind
-
   func bind() {
     viewModel.statePublisher
       .receive(on: RunLoop.main)

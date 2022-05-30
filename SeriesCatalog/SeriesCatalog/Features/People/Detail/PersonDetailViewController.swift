@@ -104,6 +104,8 @@ class PersonDetailViewController: UITableViewController, LoadableProtocol, Error
       }
     }
   }
+  
+  // MARK: - Table view delegate
 
   override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     guard hasTitle(for: section) else { return nil }
