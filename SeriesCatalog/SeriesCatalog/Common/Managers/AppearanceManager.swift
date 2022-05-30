@@ -34,21 +34,15 @@ class AppearanceManager: AppearanceManagerProtocol {
   }
   
   private func setupTabBarAppearance() {
-    let appearance = UITabBarAppearance()
-    appearance.configureWithOpaqueBackground()
-    appearance.backgroundColor = UIColor.secondarySystemBackground
+
     let normal: [NSAttributedString.Key : Any] = [.foregroundColor: UIColor.secondaryLabel]
     let selected: [NSAttributedString.Key : Any] = [.foregroundColor: UIColor.label]
 
-    appearance.stackedLayoutAppearance.normal.titleTextAttributes = normal
-    appearance.stackedLayoutAppearance.selected.titleTextAttributes = selected
-    appearance.compactInlineLayoutAppearance.normal.titleTextAttributes = normal
-    appearance.compactInlineLayoutAppearance.selected.titleTextAttributes = selected
-    appearance.inlineLayoutAppearance.normal.titleTextAttributes = normal
-    appearance.inlineLayoutAppearance.selected.titleTextAttributes = selected
-    
-    UITabBar.appearance().standardAppearance = appearance
-    UITabBar.appearance().scrollEdgeAppearance = appearance
+    UITabBarItem.appearance().setTitleTextAttributes(normal, for: .normal)
+    UITabBarItem.appearance().setTitleTextAttributes(selected, for: .selected)
+
+    UITabBar.appearance().backgroundColor = UIColor.secondarySystemBackground
+
   }
   
   private func setupTableViewAppearance() {

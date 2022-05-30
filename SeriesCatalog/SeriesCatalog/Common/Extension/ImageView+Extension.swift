@@ -10,7 +10,8 @@ import SDWebImage
 
 extension UIImageView {
   func sdLoad(with url: URL?) {
-    sd_imageIndicator = SDWebImageActivityIndicator.gray
+    let indicator: SDWebImageActivityIndicator = traitCollection.userInterfaceStyle == .dark ? .white : .gray
+    sd_imageIndicator = indicator
     sd_setImage(with: url)
   }
 }
