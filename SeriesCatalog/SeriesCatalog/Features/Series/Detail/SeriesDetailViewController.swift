@@ -46,9 +46,13 @@ class SeriesDetailViewController: UITableViewController, LoadableProtocol, Error
   override func viewDidLoad() {
     super.viewDidLoad()
     setup()
-    viewModel.load()
     navigationItem.backButtonDisplayMode = .minimal
     navigationItem.titleView = segmentedControl
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    viewModel.load()
   }
   
   // MARK: - Methods

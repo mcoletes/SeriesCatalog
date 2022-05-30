@@ -345,6 +345,8 @@
 		94AEB3CA284414ED007630AB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				94FDDCA62842E53600105705 /* DetailTitleCell.swift */,
+				94FDDCA72842E53600105705 /* DetailTitleCell.xib */,
 				94FDDCA22842D8F700105705 /* DetailInfoCell.swift */,
 				94FDDCA32842D8F700105705 /* DetailInfoCell.xib */,
 				94EDC8B228417E72005D8375 /* SeriesListCell.swift */,
@@ -654,8 +656,6 @@
 		94FDDCA12842D8DD00105705 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				94FDDCA62842E53600105705 /* DetailTitleCell.swift */,
-				94FDDCA72842E53600105705 /* DetailTitleCell.xib */,
 				94FDDCAA2842E7A400105705 /* DetailInfoImageCell.swift */,
 				94FDDCAB2842E7A400105705 /* DetailInfoImageCell.xib */,
 			);
