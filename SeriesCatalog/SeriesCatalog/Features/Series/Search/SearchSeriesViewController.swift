@@ -29,21 +29,30 @@ class SearchSeriesViewController: UITableViewController, LoadableProtocol, Error
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    title = "Search"
     setup()
   }
   
   // MARK: - Methods
   
   private func setup() {
-    setupSearchController()
-    registerCells()
+    setupUI()
     bind()
   }
   
-  private func registerCells() {
+  private func setupUI() {
+    title = "Search"
+    navigationItem.backButtonDisplayMode = .minimal
+    setupTableView()
+    setupSearchController()
+  }
+  
+  func setupTableView() {
     tableView.separatorColor = .clear
     tableView.delegate = self
+    registerCells()
+  }
+  
+  private func registerCells() {
     tableView.register(SeriesListCell.self)
   }
   
