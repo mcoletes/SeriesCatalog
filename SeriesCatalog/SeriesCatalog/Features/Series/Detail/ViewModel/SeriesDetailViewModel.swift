@@ -16,13 +16,14 @@ protocol SeriesDetailViewModelProtocol {
 }
 
 class SeriesDetailViewModel: SeriesDetailViewModelProtocol, RegularStateViewModelProtocol {
+  
   @Published var state: RegularStates<SeriesDetailModels.Model> = .idle
   var statePublisher: Published<RegularStates<SeriesDetailModels.Model>>.Publisher { $state }
   private var seriesDetail: SeriesDetail?
   private var episodes: [Episode] = []
-  let id: Int
-  let listAPI: SeriesAPIProtocol
-  let favoritesManager: FavoritesSeriesManagerProtocol
+  private let id: Int
+  private let listAPI: SeriesAPIProtocol
+  private let favoritesManager: FavoritesSeriesManagerProtocol
   
   init(id: Int, listAPI: SeriesAPIProtocol = SeriesAPI(), favoritesManager: FavoritesSeriesManagerProtocol = FavoritesSeriesManager()) {
     self.id = id

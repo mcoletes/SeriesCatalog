@@ -19,7 +19,6 @@ class SeriesDetailViewController: UITableViewController, LoadableProtocol, Error
   private var cancellables: Set<AnyCancellable> = []
   private lazy var datasource: SeriesDetailDataSource = makeDataSource()
   private var model: SeriesDetailModels.Model?
-  private let defaultHeaderHeight: CGFloat = 30
   
   private lazy var segmentedControl: UISegmentedControl = {
     let segmentedControl = UISegmentedControl(items: ["Details", "Episodes"])
@@ -46,16 +45,24 @@ class SeriesDetailViewController: UITableViewController, LoadableProtocol, Error
   override func viewDidLoad() {
     super.viewDidLoad()
     setup()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
     viewModel.load()
-    navigationItem.backButtonDisplayMode = .minimal
-    navigationItem.titleView = segmentedControl
   }
   
   // MARK: - Methods
   
   private func setup() {
+    setupUI()
     registerCells()
     bind()
+  }
+  
+  private func setupUI() {
+    navigationItem.backButtonDisplayMode = .minimal
+    navigationItem.titleView = segmentedControl
   }
   
   private func registerCells() {
@@ -114,11 +121,11 @@ class SeriesDetailViewController: UITableViewController, LoadableProtocol, Error
     episodesSections.forEach { section in
       snapshot.appendItems(section.rows, toSection: section)
     }
-    datasource.apply(snapshot, animatingDifferences: true)
+    datasource.apply(snapshot, animatingDifferences: false)
   }
   
   private func setupFavoriteButton(isFavorite: Bool) {
-    let imageName = isFavorite ? "heart.fill" : "heart"
+    let imageName = isFavorite ? Constants.Icons.heartFilled : Constants.Icons.heartEmpty
     let image = UIImage(systemName: imageName)?.withTintColor(.label).withRenderingMode(.alwaysOriginal)
     let button = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(favoritesTapped))
     navigationItem.rightBarButtonItem = button
@@ -156,16 +163,18 @@ class SeriesDetailViewController: UITableViewController, LoadableProtocol, Error
     }
   }
   
+  // MARK: - Table view delegate
+  
   override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     guard shouldAddHeader(), let model = model, section < model.episodeSections.count else { return nil }
     let label = UILabel()
-    label.text = model.episodeSections[section].type.title
+    label.text = model.episodeSections[section].title
     label.backgroundColor = .systemBackground
     return label
   }
   
   override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    return shouldAddHeader() ? defaultHeaderHeight: 0
+    return shouldAddHeader() ? Constants.Header.defaultHeight: Constants.Header.emptyHeight
   }
   
   private func shouldAddHeader() -> Bool {

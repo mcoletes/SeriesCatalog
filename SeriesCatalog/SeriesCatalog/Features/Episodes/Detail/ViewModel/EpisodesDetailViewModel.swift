@@ -23,10 +23,10 @@ protocol EpisodesDetailViewModelProtocol {
 }
 
 class EpisodesDetailViewModel: EpisodesDetailViewModelProtocol, StateViewModelProtocol {
+  
   @Published var state: EpisodesDetailState = .none
   var statePublisher: Published<EpisodesDetailState>.Publisher { $state }
-  
-  let episode: Episode
+  private let episode: Episode
   
   init(episode: Episode) {
     self.episode = episode

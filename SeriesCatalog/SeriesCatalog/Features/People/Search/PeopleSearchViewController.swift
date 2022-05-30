@@ -19,7 +19,8 @@ class PeopleSearchViewController: UICollectionViewController, LoadableProtocol, 
   private var cancellables: Set<AnyCancellable> = []
   private lazy var datasource: PeopleSearchCollectionDataSource = makeDataSource()
 
-
+  // MARK: - Initializers
+  
   init(viewModel: PeopleSearchViewModelProtocol = PeopleSearchViewModel()) {
     self.viewModel = viewModel
     super.init(collectionViewLayout: SearchCollectionViewLayout().getLayout())
@@ -36,10 +37,17 @@ class PeopleSearchViewController: UICollectionViewController, LoadableProtocol, 
     setup()
   }
   
+  // MARK: - Methods
+  
   private func setup() {
-    setupSearchController()
+    setupUI()
     registerCells()
     bind()
+  }
+  
+  private func setupUI() {
+    navigationItem.backButtonDisplayMode = .minimal
+    setupSearchController()
   }
   
   private func registerCells() {
@@ -88,6 +96,14 @@ class PeopleSearchViewController: UICollectionViewController, LoadableProtocol, 
       cell.setup(personURL: model.imageURL, name: model.name)
       return cell
     }
+  }
+  
+  // MARK: UICollectionViewDelegate
+  
+  override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    guard let person = viewModel.getPerson(for: indexPath.row) else { return }
+    let personDetailVM = PersonDetailViewModel(person: person)
+    navigationController?.pushViewController(PersonDetailViewController(viewModel: personDetailVM), animated: true)
   }
 }
 

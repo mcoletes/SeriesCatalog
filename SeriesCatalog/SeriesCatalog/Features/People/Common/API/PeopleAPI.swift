@@ -10,7 +10,7 @@ import Combine
 
 protocol PeopleAPIProtocol {
   func searchPeople(query: String) async throws -> [PeopleResult]
-  func fetchPersonDetail(id: Int) async throws -> SeriesDetail
+  func fetchPersonDetail(id: Int) async throws -> [PersonDetailResult]
 }
 
 class PeopleAPI: PeopleAPIProtocol {
@@ -25,8 +25,8 @@ class PeopleAPI: PeopleAPIProtocol {
     return try await networkProvider.fetch(provider: PeopleSearchProvider(query: query))
   }
   
-  func fetchPersonDetail(id: Int) async throws -> SeriesDetail {
-    return try await networkProvider.fetch(provider: SeriesDetailProvider(id: id))
+  func fetchPersonDetail(id: Int) async throws -> [PersonDetailResult] {
+    return try await networkProvider.fetch(provider: PersonDetailProvider(id: id))
   }
 }
 
