@@ -45,8 +45,6 @@ class SeriesDetailViewController: UITableViewController, LoadableProtocol, Error
   override func viewDidLoad() {
     super.viewDidLoad()
     setup()
-    navigationItem.backButtonDisplayMode = .minimal
-    navigationItem.titleView = segmentedControl
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -57,8 +55,14 @@ class SeriesDetailViewController: UITableViewController, LoadableProtocol, Error
   // MARK: - Methods
   
   private func setup() {
+    setupUI()
     registerCells()
     bind()
+  }
+  
+  private func setupUI() {
+    navigationItem.backButtonDisplayMode = .minimal
+    navigationItem.titleView = segmentedControl
   }
   
   private func registerCells() {
@@ -121,7 +125,7 @@ class SeriesDetailViewController: UITableViewController, LoadableProtocol, Error
   }
   
   private func setupFavoriteButton(isFavorite: Bool) {
-    let imageName = isFavorite ? "heart.fill" : "heart"
+    let imageName = isFavorite ? Constants.Icons.heartFilled : Constants.Icons.heartEmpty
     let image = UIImage(systemName: imageName)?.withTintColor(.label).withRenderingMode(.alwaysOriginal)
     let button = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(favoritesTapped))
     navigationItem.rightBarButtonItem = button
@@ -168,7 +172,7 @@ class SeriesDetailViewController: UITableViewController, LoadableProtocol, Error
   }
   
   override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    return shouldAddHeader() ? Constants.defaultHeaderheight: Constants.defaultEmptyHeaderHeight
+    return shouldAddHeader() ? Constants.Header.defaultHeight: Constants.Header.emptyHeight
   }
   
   private func shouldAddHeader() -> Bool {

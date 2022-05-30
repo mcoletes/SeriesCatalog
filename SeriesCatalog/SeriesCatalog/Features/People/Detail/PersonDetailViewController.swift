@@ -37,14 +37,19 @@ class PersonDetailViewController: UITableViewController, LoadableProtocol, Error
     super.viewDidLoad()
     setup()
     viewModel.load()
-    navigationItem.backButtonDisplayMode = .minimal
   }
   
   // MARK: - Methods
   
   private func setup() {
+    setupUI()
     registerCells()
     bind()
+  }
+  
+  private func setupUI() {
+    title = "Detail"
+    navigationItem.backButtonDisplayMode = .minimal
   }
   
   private func registerCells() {
@@ -109,7 +114,7 @@ class PersonDetailViewController: UITableViewController, LoadableProtocol, Error
   }
 
   override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    return hasTitle(for: section) ? Constants.defaultHeaderheight: Constants.defaultEmptyHeaderHeight
+    return hasTitle(for: section) ? Constants.Header.defaultHeight: Constants.Header.emptyHeight
   }
   
   private func hasTitle(for section: Int) -> Bool {

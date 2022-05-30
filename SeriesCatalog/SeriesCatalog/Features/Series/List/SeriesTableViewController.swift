@@ -35,7 +35,6 @@ class SeriesTableViewController: UITableViewController, UITableViewDataSourcePre
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    navigationItem.backButtonDisplayMode = .minimal
     setup()
     viewModel.load()
   }
@@ -43,9 +42,15 @@ class SeriesTableViewController: UITableViewController, UITableViewDataSourcePre
   // MARK: - Setup
   
   private func setup() {
+    setupUI()
+
+    bind()
+  }
+  
+  private func setupUI() {
+    navigationItem.backButtonDisplayMode = .minimal
     barButton()
     setupTableView()
-    bind()
   }
   
   private func barButton() {

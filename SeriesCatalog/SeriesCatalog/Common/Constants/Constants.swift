@@ -8,6 +8,15 @@
 import UIKit
 
 struct Constants {
-  static let defaultHeaderheight: CGFloat = 30
-  static let defaultEmptyHeaderHeight: CGFloat = 0
+  struct Header {
+    static let defaultHeight: CGFloat = 30
+    static let emptyHeight: CGFloat = 0
+  }
+
+  struct Icons {
+    static let heartEmpty = "heart"
+    static let heartFilled = "heart.fill"
+    static let photo = "photo"
+    static let person = "person"
+  }
 }

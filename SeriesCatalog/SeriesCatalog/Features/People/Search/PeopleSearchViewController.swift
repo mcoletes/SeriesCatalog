@@ -37,9 +37,14 @@ class PeopleSearchViewController: UICollectionViewController, LoadableProtocol, 
   }
   
   private func setup() {
-    setupSearchController()
+    setupUI()
     registerCells()
     bind()
+  }
+  
+  private func setupUI() {
+    navigationItem.backButtonDisplayMode = .minimal
+    setupSearchController()
   }
   
   private func registerCells() {
