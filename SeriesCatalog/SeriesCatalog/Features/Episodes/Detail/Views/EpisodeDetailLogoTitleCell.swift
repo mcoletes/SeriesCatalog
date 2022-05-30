@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SDWebImage
 
 class EpisodeDetailLogoTitleCell: UITableViewCell, ReusableView, NibLoadableView {
 
@@ -14,8 +13,7 @@ class EpisodeDetailLogoTitleCell: UITableViewCell, ReusableView, NibLoadableView
   @IBOutlet weak var titleLabel: UILabel!
   
   func setup(logoUrl: URL?, title: String?) {
-    logoImage.sd_imageIndicator = SDWebImageActivityIndicator.gray
-    logoImage.sd_setImage(with: logoUrl)
+    logoImage.sdLoad(with: logoUrl)
     titleLabel.text = title
   }
 }

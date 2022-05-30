@@ -33,7 +33,7 @@ enum TabBarTabs: CaseIterable {
     case .people:
       return TabBarModel(title: "People",
                          image: "person",
-                         viewController: UIViewController())
+                         viewController: PeopleSearchViewController())
     case .settings:
       return TabBarModel(title: "Settings",
                          image: "gear",

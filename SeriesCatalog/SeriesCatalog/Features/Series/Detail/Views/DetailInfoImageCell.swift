@@ -19,8 +19,7 @@ class DetailInfoImageCell: UITableViewCell, ReusableView, NibLoadableView {
   }
   
   func setup(imageUrl: URL?, title: String?, description: String?) {
-    logoImage.sd_imageIndicator = SDWebImageActivityIndicator.gray
-    logoImage.sd_setImage(with: imageUrl)
+    logoImage.sdLoad(with: imageUrl)
     titleLabel.text = title
     descriptionLabel.text = description
   }

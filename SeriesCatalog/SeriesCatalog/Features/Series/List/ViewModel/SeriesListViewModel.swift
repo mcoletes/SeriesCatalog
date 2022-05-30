@@ -17,12 +17,12 @@ protocol SeriesListViewModelProtocol {
 class SeriesListViewModel: SeriesListViewModelProtocol, RegularStateViewModelProtocol {
   @Published var state: RegularStates<[SeriesListCellModel]> = .idle
   var statePublisher: Published<RegularStates<[SeriesListCellModel]>>.Publisher { $state }
-  private let listAPI: SeriesAPI
+  private let listAPI: SeriesAPIProtocol
   private var page: Int = 0
   private var fetching: Bool = false
   private var series: [Series] = []
   
-  init(listAPI: SeriesAPI = SeriesAPI()) {
+  init(listAPI: SeriesAPIProtocol = SeriesAPI()) {
     self.listAPI = listAPI
   }
   

@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SDWebImage
 
 class DetailTitleCell: UITableViewCell, ReusableView, NibLoadableView {
 
@@ -23,9 +22,7 @@ class DetailTitleCell: UITableViewCell, ReusableView, NibLoadableView {
   
   func setup(title: String?, imageURL: URL?) {
     titleLabel.text = title
-    logoImage.sd_imageIndicator = SDWebImageActivityIndicator.gray
-    backgroundImage.sd_imageIndicator = SDWebImageActivityIndicator.gray
-    logoImage.sd_setImage(with: imageURL)
-    backgroundImage.sd_setImage(with: imageURL)
+    backgroundImage.sdLoad(with: imageURL)
+    logoImage.sdLoad(with: imageURL)
   }
 }
