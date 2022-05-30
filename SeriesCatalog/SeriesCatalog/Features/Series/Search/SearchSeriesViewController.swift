@@ -53,7 +53,6 @@ class SearchSeriesViewController: UITableViewController, LoadableProtocol, Error
   }
   
   private func registerCells() {
-
     tableView.register(SeriesListCell.self)
   }
   
