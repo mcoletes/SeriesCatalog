@@ -29,6 +29,7 @@ struct SearchResult: Codable {
 
 // MARK: - Series Detail
 struct SeriesDetail: Codable {
+  let id: Int
   let name: String?
   let genres: [String]?
   let schedule: Schedule?
@@ -38,6 +39,7 @@ struct SeriesDetail: Codable {
   let embedded: Embedded?
   
   enum CodingKeys: String, CodingKey {
+      case id
       case name
       case genres
       case schedule
@@ -45,6 +47,10 @@ struct SeriesDetail: Codable {
       case image
       case summary
       case embedded = "_embedded"
+  }
+  
+  func toSeries() -> Series {
+    return Series(id: id, name: name, image: image, summary: summary, genres: genres)
   }
 }
 
