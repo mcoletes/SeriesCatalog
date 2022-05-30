@@ -22,6 +22,10 @@ App presentes the series and related episodes available at [TV Maze API](https:/
 * Dependencies used:
     * [SDWebImage](https://github.com/SDWebImage/SDWebImage)
 
+## Run
+1. Open the (SeriesCatalog.xcodeproj)[https://github.com/mcoletes/SeriesCatalog/tree/main/SeriesCatalog/SeriesCatalog.xcodeproj] with Xcode.
+2. Wait for the dependencies to be installed
+3. Press Run
 ## Architecture
 * State MVVM + Combine Architecture
 
